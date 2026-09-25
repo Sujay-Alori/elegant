@@ -1,142 +1,144 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, ArrowUpRight, Eye } from 'lucide-react';
-import { projectsData } from '../data/projectsData';
-import type { Project } from '../types';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-interface ProjectsProps {
-  onSelectProject: (project: Project) => void;
+interface ProjectItem {
+  id: string;
+  number: string;
+  src: string;
+  colSpan: string;
+  minHeight: string;
 }
 
-export const Projects: React.FC<ProjectsProps> = ({ onSelectProject }) => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+const projectGallery: ProjectItem[] = [
+  // Block 1: Featured Large Landscape (img-1) + Tall Portrait (img-2)
+  {
+    id: 'work-01',
+    number: '01',
+    src: '/img-1.jpg',
+    colSpan: 'md:col-span-8',
+    minHeight: 'min-h-[320px] sm:min-h-[420px] md:min-h-[540px]',
+  },
+  {
+    id: 'work-02',
+    number: '02',
+    src: '/img-2.jpg',
+    colSpan: 'md:col-span-4',
+    minHeight: 'min-h-[320px] sm:min-h-[420px] md:min-h-[540px]',
+  },
 
-  const categories = ['All', 'Residential', 'Commercial', 'Interior', 'Hospitality', 'Institutional'];
+  // Block 2: 3-column architectural rhythm (img-3, img-4, img-5)
+  {
+    id: 'work-03',
+    number: '03',
+    src: '/img-3.jpg',
+    colSpan: 'md:col-span-4',
+    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+  },
+  {
+    id: 'work-04',
+    number: '04',
+    src: '/img-4.jpg',
+    colSpan: 'md:col-span-4',
+    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+  },
+  {
+    id: 'work-05',
+    number: '05',
+    src: '/img-5.jpg',
+    colSpan: 'md:col-span-4',
+    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+  },
 
-  const filteredProjects = activeCategory === 'All'
-    ? projectsData
-    : projectsData.filter((p) => p.category === activeCategory);
+  // Block 3: Asymmetric composition (img-6 & img-7)
+  {
+    id: 'work-06',
+    number: '06',
+    src: '/img-6.jpg',
+    colSpan: 'md:col-span-7',
+    minHeight: 'min-h-[300px] sm:min-h-[400px] md:min-h-[500px]',
+  },
+  {
+    id: 'work-07',
+    number: '07',
+    src: '/img-7.jpg',
+    colSpan: 'md:col-span-5',
+    minHeight: 'min-h-[300px] sm:min-h-[400px] md:min-h-[500px]',
+  },
 
+  // Block 4: Balanced dual frame (img-8 & img-9)
+  {
+    id: 'work-08',
+    number: '08',
+    src: '/img-8.jpg',
+    colSpan: 'md:col-span-6',
+    minHeight: 'min-h-[280px] sm:min-h-[380px] md:min-h-[440px]',
+  },
+  {
+    id: 'work-09',
+    number: '09',
+    src: '/img-9.jpg',
+    colSpan: 'md:col-span-6',
+    minHeight: 'min-h-[280px] sm:min-h-[380px] md:min-h-[440px]',
+  },
+];
+
+export const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-24 sm:py-32 bg-[#FFFFFF] relative overflow-hidden">
-      {/* Blueprint Grid Lines */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header & Category Filter Tabs */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 pb-6 border-b border-slate-200 gap-6">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-[2px] bg-[#0284C7]" />
-              <span className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#0284C7]">
-                PORTFOLIO SHOWCASE
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-bold font-display tracking-tight text-[#0A0D14] uppercase">
-              Selected Works
-            </h2>
-          </div>
-
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all duration-200 ${
-                  activeCategory === cat
-                    ? 'bg-[#0A0D14] text-white shadow-md'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Portfolio Masonry / Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                layout
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                onClick={() => onSelectProject(project)}
-                className="group relative cursor-pointer bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-[#0284C7] shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col"
-              >
-                {/* Image Container with Zoom and Overlay */}
-                <div className="relative h-72 sm:h-80 overflow-hidden bg-slate-900">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  
-                  {/* Subtle Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D14]/90 via-[#0A0D14]/30 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
-
-                  {/* Top Badges */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                    <span className="px-3 py-1 rounded-md bg-[#0A0D14]/80 backdrop-blur-md text-white text-[11px] font-mono font-medium tracking-wider border border-white/15">
-                      {project.category}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-md bg-[#0284C7]/90 text-white text-[10px] font-mono font-bold tracking-wider">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  {/* Hover Inspect Indicator */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none">
-                    <div className="px-4 py-2 rounded-full bg-white/95 text-slate-900 text-xs font-mono font-semibold tracking-wider flex items-center gap-2 shadow-xl border border-white/40">
-                      <Eye className="w-3.5 h-3.5 text-[#0284C7]" />
-                      <span>EXPLORE BLUEPRINT & PHOTOS</span>
-                    </div>
-                  </div>
-
-                  {/* Bottom Image Sub-info */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white z-10">
-                    <div className="flex items-center gap-1.5 text-xs text-cyan-300 font-mono mb-1">
-                      <MapPin className="w-3.5 h-3.5 text-[#DC2626]" />
-                      <span>{project.location}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Content Footer */}
-                <div className="p-6 flex-1 flex flex-col justify-between bg-white">
-                  <div>
-                    <h3 className="text-xl font-bold font-display text-[#0A0D14] group-hover:text-[#0284C7] transition-colors mb-1">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs font-sans text-slate-500 line-clamp-2">
-                      {project.subtitle}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-400">
-                      AREA: <strong className="text-slate-700 font-bold">{project.area}</strong>
-                    </span>
-
-                    <span className="inline-flex items-center gap-1 text-[#0284C7] font-semibold group-hover:translate-x-1 transition-transform">
-                      <span>VIEW PROJECT</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bottom Red Accent Indicator Bar on hover */}
-                <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-[#0284C7] via-[#38BDF8] to-[#DC2626] transition-all duration-500" />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+    <section
+      id="projects"
+      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-24 sm:py-32 md:py-40 bg-[#F5F3EE] text-[#1C1C1B] select-none relative"
+      style={{ backgroundColor: '#F5F3EE' }}
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12">
+        {/* Minimal Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-14 sm:mb-20 md:mb-24"
+        >
+          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
+            PORTFOLIO
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C1C1B] tracking-tight uppercase">
+            Selected Works
+          </h2>
         </motion.div>
+
+        {/* Editorial Masonry Gallery (No cards, no borders, no shadows) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
+          {projectGallery.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{
+                duration: 0.8,
+                delay: (index % 3) * 0.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={`${item.colSpan} relative group overflow-hidden bg-[#E8E4DA] cursor-pointer`}
+            >
+              <div className={`w-full h-full ${item.minHeight} overflow-hidden relative`}>
+                <img
+                  src={item.src}
+                  alt={`Selected Architectural Work ${item.number}`}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+
+                {/* Minimal Project Number reveal on hover */}
+                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <span className="text-xs sm:text-sm font-mono tracking-widest text-[#FFFFFF] bg-[#171817]/80 backdrop-blur-sm px-2.5 py-1">
+                    {item.number}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

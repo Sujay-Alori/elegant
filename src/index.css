@@ -4,132 +4,51 @@
 
 @layer base {
   :root {
-    --primary-blue: #0284C7;
-    --primary-cyan: #0EA5E9;
-    --accent-red: #DC2626;
-    --charcoal: #0A0D14;
+    --bg-ivory: #F5F3EE;
+    --bg-dark: #171817;
+    --text-primary: #1C1C1B;
+    --text-secondary: #77736B;
+    --accent-blue: #168BCB;
+    --accent-red: #D92525;
   }
 
   html {
     scroll-behavior: smooth;
+    background-color: #171817;
+    color: #1C1C1B;
   }
 
   body {
+    font-family: 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  /* Custom Blueprint Grid Backgrounds */
-  .bg-grid-pattern {
-    background-size: 32px 32px;
-    background-image: 
-      linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+  p {
+    line-height: 1.8;
   }
 
-  .bg-grid-dark {
-    background-size: 32px 32px;
-    background-image: 
-      linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
-  }
-
-  .bg-dots-pattern {
-    background-size: 20px 20px;
-    background-image: radial-gradient(rgba(2, 132, 199, 0.12) 1px, transparent 1px);
+  ::selection {
+    background-color: #168BCB;
+    color: #FFFFFF;
   }
 }
 
-/* Custom Scrollbar */
+/* Minimal Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0D14;
+  background: #171817;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0284C7;
-  border-radius: 4px;
+  background: #2E302E;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0EA5E9;
-}
-
-/* Glassmorphic Navbar & Cards */
-.glass-nav {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.glass-nav-scrolled {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-}
-
-.glass-dark {
-  background: rgba(10, 13, 20, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Architectural Drafting Corner Marks */
-.corner-accent {
-  position: relative;
-}
-
-.corner-accent::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid #0284C7;
-  border-left: 2px solid #0284C7;
-}
-
-.corner-accent::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  width: 10px;
-  height: 10px;
-  border-bottom: 2px solid #DC2626;
-  border-right: 2px solid #DC2626;
-}
-
-/* Line Draw Keyframes for Preloader */
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.animate-dash {
-  stroke-dasharray: 400;
-  stroke-dashoffset: 400;
-  animation: dash 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Architectural Text Glint */
-.text-shimmer {
-  background: linear-gradient(90deg, #0A0D14 0%, #0284C7 50%, #0A0D14 100%);
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shimmer 6s linear infinite;
-}
-
-@keyframes shimmer {
-  to {
-    background-position: 200% center;
-  }
+  background: #77736B;
 }

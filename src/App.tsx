@@ -1,113 +1,50 @@
 import { useState } from 'react';
 import { Preloader } from './components/Preloader';
-import { Navbar } from './components/Navbar';
+import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { Projects } from './components/Projects';
 import { About } from './components/About';
 import { Services } from './components/Services';
-import { Projects } from './components/Projects';
-import { ProjectModal } from './components/ProjectModal';
-import { Philosophy } from './components/Philosophy';
-import { Process } from './components/Process';
-import { WhyUs } from './components/WhyUs';
-import { MissionVision } from './components/MissionVision';
-import { CostEstimator } from './components/CostEstimator';
-import { CtaSection } from './components/CtaSection';
 import { Contact } from './components/Contact';
-import { MapSection } from './components/MapSection';
 import { Footer } from './components/Footer';
-import { ConsultationModal } from './components/ConsultationModal';
-import { FloatingActions } from './components/FloatingActions';
-import type { Project } from './types';
 
 export function App() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [selectedServiceForConsult, setSelectedServiceForConsult] = useState('Architectural Design');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const handleOpenConsultation = (serviceName?: string) => {
-    if (serviceName) {
-      setSelectedServiceForConsult(serviceName);
-    }
-    setIsConsultationOpen(true);
-  };
-
-  const handleSelectProject = (project: Project) => {
-    setSelectedProject(project);
-  };
-
-  const handleConsultFromProject = (projectTitle: string) => {
-    setSelectedProject(null);
-    setSelectedServiceForConsult(`Inquiry for project: ${projectTitle}`);
-    setIsConsultationOpen(true);
-  };
 
   return (
-    <div className="min-h-screen bg-[#FCFCFD] text-[#0A0D14] flex flex-col selection:bg-[#0284C7] selection:text-white relative">
-      {/* Architectural Preloader */}
+    <div className="min-h-screen bg-[#171817] text-[#FFFFFF] selection:bg-[#168BCB] selection:text-[#FFFFFF] relative">
+      {/* Fullscreen Minimal Preloader */}
       {!preloaderFinished && (
         <Preloader onComplete={() => setPreloaderFinished(true)} />
       )}
 
-      {/* Main Website Structure */}
-      <Navbar onOpenConsultation={() => handleOpenConsultation()} />
+      {/* Main Experience (Rendered once preloader finishes) */}
+      {preloaderFinished && (
+        <>
+          {/* Top Architectural Header (Logo left, MENU lines right, Ivory #F4F0E8 background) */}
+          <Header />
 
-      <main className="flex-1">
-        {/* 1. Hero Section */}
-        <Hero onOpenConsultation={() => handleOpenConsultation()} />
+          <main>
+            {/* 1. Home Hero Section (Dark Charcoal #171817) */}
+            <Hero />
 
-        {/* 2. About Section */}
-        <About onOpenConsultation={() => handleOpenConsultation()} />
+            {/* 2. Selected Works Portfolio Section (Warm Architectural Ivory #F5F3EE) */}
+            <Projects />
 
-        {/* 3. Services Section */}
-        <Services onSelectService={(service) => handleOpenConsultation(service)} />
+            {/* 3. Editorial About Us & Vision Section (Warm Architectural Ivory #F5F3EE) */}
+            <About />
 
-        {/* 4. Interactive Project Budget Estimator */}
-        <CostEstimator onOpenConsultationWithEstimate={(summary) => handleOpenConsultation(summary)} />
+            {/* 4. Editorial Services / Expertise Section (Warm Architectural Ivory #F4F0E8) */}
+            <Services />
 
-        {/* 5. Featured Projects Portfolio */}
-        <Projects onSelectProject={handleSelectProject} />
+            {/* 5. Minimalist Contact Section (Dark Charcoal #171817) */}
+            <Contact />
+          </main>
 
-        {/* 6. Design Philosophy */}
-        <Philosophy />
-
-        {/* 7. Our Process */}
-        <Process />
-
-        {/* 8. Why Elegant Architects */}
-        <WhyUs />
-
-        {/* 9. Mission / Vision */}
-        <MissionVision />
-
-        {/* 10. Call To Action */}
-        <CtaSection onOpenConsultation={() => handleOpenConsultation()} />
-
-        {/* 11. Contact Section */}
-        <Contact />
-
-        {/* 12. Google Map */}
-        <MapSection />
-      </main>
-
-      {/* 13. Footer */}
-      <Footer onOpenConsultation={() => handleOpenConsultation()} />
-
-      {/* Interactive Modals */}
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-        initialService={selectedServiceForConsult}
-      />
-
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-        onConsultProject={handleConsultFromProject}
-      />
-
-      {/* Floating Speed Actions */}
-      <FloatingActions />
+          {/* 6. Editorial 3-Column Footer (Warm Architectural Ivory #F4F0E8) */}
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
