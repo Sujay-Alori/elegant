@@ -7,73 +7,73 @@ interface ServiceItem {
 }
 
 const servicesList: ServiceItem[] = [
-  { number: '01', title: 'General Contracting' },
-  { number: '02', title: 'Pre-Construction Design' },
-  { number: '03', title: 'Building & Modeling' },
-  { number: '04', title: 'Construction Management' },
-  { number: '05', title: 'Design & Build' },
-  { number: '06', title: 'House Remodeling' },
-  { number: '07', title: 'Construction Management' },
-  { number: '08', title: 'Painting & Tiling' },
-  { number: '09', title: 'Kitchen Remodeling' },
+  { number: '01', title: 'ARCHITECTURAL DESIGN' },
+  { number: '02', title: 'INTERIOR DESIGN & EXECUTION (TURNKEY)' },
+  { number: '03', title: 'CONSTRUCTION (TURNKEY)' },
+  { number: '04', title: 'PROJECT MANAGEMENT CONSULTANT' },
+  { number: '05', title: 'STRUCTURAL DESIGN' },
+  { number: '06', title: 'LANDSCAPE DESIGN' },
+  { number: '07', title: 'ESTIMATION & VALUATION' },
+  { number: '08', title: 'SURVEYOR' },
+  { number: '09', title: 'BUILDING APPROVAL' },
 ];
 
 export const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-24 sm:py-32 md:py-40 bg-[#F4F0E8] text-[#1C1C1B] select-none relative"
+      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-20 sm:py-28 md:py-36 bg-[#F4F0E8] text-[#1C1C1B] select-none"
       style={{ backgroundColor: '#F4F0E8' }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12 lg:px-16">
-        {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12 w-full">
+        {/* Eyebrow & Main Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 sm:mb-20 md:mb-24"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-8 sm:mb-12"
         >
           <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
             OUR EXPERTISE
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C1C1B] tracking-tight uppercase">
-            Services
+            SERVICES
           </h2>
         </motion.div>
 
-        {/* Minimal Editorial Service List (No cards, no colorful boxes, no gradients) */}
-        <div className="border-t border-[#1C1C1B]/15">
+        {/* Top Thin Horizontal Divider */}
+        <div className="w-full h-[1px] bg-[#D8D4CA]" />
+
+        {/* Clean Vertical Numbered Editorial List */}
+        <div className="w-full flex flex-col">
           {servicesList.map((service, index) => (
             <motion.div
-              key={`${service.number}-${index}`}
-              initial={{ opacity: 0, y: 16 }}
+              key={service.number}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, margin: '-30px' }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.03,
+                duration: 0.5,
+                delay: index * 0.04,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="group relative border-b border-[#1C1C1B]/15 py-6 sm:py-8 md:py-10 cursor-pointer"
+              className="group w-full py-5 sm:py-6 md:py-8 border-b border-[#D8D4CA] flex items-baseline justify-between transition-colors duration-300 cursor-default"
             >
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-baseline gap-6 sm:gap-10 md:gap-14 lg:gap-20 flex-1">
-                  {/* Service Number Index */}
-                  <span className="font-mono text-xs sm:text-sm md:text-base text-[#77736B] tracking-widest flex-shrink-0 group-hover:text-[#1C1C1B] transition-colors duration-300">
-                    {service.number}
-                  </span>
+              <div className="flex items-baseline gap-4 sm:gap-8 md:gap-12 w-full">
+                {/* Number on the left */}
+                <span className="font-mono text-xs sm:text-sm md:text-base text-[#77736B] tracking-widest min-w-[28px] sm:min-w-[36px] md:min-w-[44px] shrink-0">
+                  {service.number}
+                </span>
 
-                  {/* Service Title */}
-                  <h3 className="font-display font-light text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#1C1C1B] tracking-[0.04em] uppercase transform transition-transform duration-300 ease-out group-hover:translate-x-3 sm:group-hover:translate-x-4">
-                    {service.title}
-                  </h3>
-                </div>
-
-                {/* Subtle Interactive Arrow Reveal on Hover */}
-                <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300 ease-out text-[#1C1C1B] text-lg sm:text-2xl md:text-3xl font-light">
-                  →
-                </div>
+                {/* Service Name with subtle horizontal shift and color transition on hover */}
+                <motion.span
+                  whileHover={{ x: 6 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="font-serif text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-normal tracking-[0.02em] sm:tracking-[0.03em] uppercase text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-300 leading-snug"
+                >
+                  {service.title}
+                </motion.span>
               </div>
             </motion.div>
           ))}
