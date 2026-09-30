@@ -5,11 +5,11 @@ export const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-24 sm:py-32 md:py-40 bg-[#F5F3EE] text-[#1C1C1B] select-none relative"
+      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-20 sm:py-28 md:py-36 bg-[#F5F3EE] text-[#1C1C1B] select-none relative w-full"
       style={{ backgroundColor: '#F5F3EE' }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-16 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full">
           {/* Left Column: Eyebrow & Founder Meta */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -44,10 +44,10 @@ export const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-9"
+            className="lg:col-span-9 w-full"
           >
             {/* Main Editorial Heading */}
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.14] text-[#1C1C1B] tracking-tight uppercase mb-8 sm:mb-10">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-normal leading-[1.14] text-[#1C1C1B] tracking-tight uppercase mb-6 sm:mb-8 md:mb-10">
               DESIGNING WITH<br />
               PURPOSE.
             </h2>
@@ -59,12 +59,12 @@ export const About: React.FC = () => {
             </p>
 
             {/* Paragraph 2: Multidisciplinary Scope */}
-            <p className="text-sm sm:text-base md:text-lg font-normal text-[#1C1C1B]/85 leading-[1.8] max-w-3xl mb-12 sm:mb-16">
+            <p className="text-sm sm:text-base md:text-lg font-normal text-[#1C1C1B]/85 leading-[1.8] max-w-3xl mb-10 sm:mb-14">
               It is a multidisciplinary architecture firm, work at multiple scales right from private client to corporate. This allows us to experiment and diversify our work: Architectural, Interior & Landscape Projects such as Luxury Bungalows, Unique Offices Decorum, Commercial & Residential Complexes, Institutional Complex, Hotel & Restaurants etc.
             </p>
 
             {/* Large Clean Editorial Architectural Image */}
-            <div className="w-full my-10 sm:my-14 overflow-hidden">
+            <div className="w-full my-8 sm:my-12 overflow-hidden">
               <motion.img
                 src="/images/img_bg_1.jpg"
                 alt="Architectural space designed by Elegant Architects"
@@ -72,13 +72,13 @@ export const About: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full h-[280px] sm:h-[400px] md:h-[480px] object-cover"
+                className="w-full h-[220px] xs:h-[260px] sm:h-[360px] md:h-[460px] object-cover"
                 loading="lazy"
               />
             </div>
 
             {/* Mission Subsection */}
-            <div className="pt-10 sm:pt-12 border-t border-[#1C1C1B]/15 mb-10 sm:mb-12">
+            <div className="pt-8 sm:pt-10 border-t border-[#1C1C1B]/15 mb-8 sm:mb-10">
               <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#77736B] mb-3">
                 MISSION
               </span>
@@ -88,7 +88,7 @@ export const About: React.FC = () => {
             </div>
 
             {/* Vision Subsection */}
-            <div className="pt-10 sm:pt-12 border-t border-[#1C1C1B]/15">
+            <div className="pt-8 sm:pt-10 border-t border-[#1C1C1B]/15">
               <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#77736B] mb-3">
                 VISION
               </span>

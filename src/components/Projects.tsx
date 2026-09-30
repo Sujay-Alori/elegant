@@ -6,7 +6,7 @@ interface ProjectItem {
   number: string;
   src: string;
   colSpan: string;
-  minHeight: string;
+  heightClass: string;
 }
 
 const projectGallery: ProjectItem[] = [
@@ -16,14 +16,14 @@ const projectGallery: ProjectItem[] = [
     number: '01',
     src: '/img-1.jpg',
     colSpan: 'md:col-span-8',
-    minHeight: 'min-h-[320px] sm:min-h-[420px] md:min-h-[540px]',
+    heightClass: 'h-[260px] xs:h-[320px] sm:h-[420px] md:h-[520px]',
   },
   {
     id: 'work-02',
     number: '02',
     src: '/img-2.jpg',
     colSpan: 'md:col-span-4',
-    minHeight: 'min-h-[320px] sm:min-h-[420px] md:min-h-[540px]',
+    heightClass: 'h-[260px] xs:h-[320px] sm:h-[420px] md:h-[520px]',
   },
 
   // Block 2: 3-column architectural rhythm (img-3, img-4, img-5)
@@ -32,21 +32,21 @@ const projectGallery: ProjectItem[] = [
     number: '03',
     src: '/img-3.jpg',
     colSpan: 'md:col-span-4',
-    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+    heightClass: 'h-[240px] xs:h-[280px] sm:h-[340px] md:h-[400px]',
   },
   {
     id: 'work-04',
     number: '04',
     src: '/img-4.jpg',
     colSpan: 'md:col-span-4',
-    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+    heightClass: 'h-[240px] xs:h-[280px] sm:h-[340px] md:h-[400px]',
   },
   {
     id: 'work-05',
     number: '05',
     src: '/img-5.jpg',
     colSpan: 'md:col-span-4',
-    minHeight: 'min-h-[280px] sm:min-h-[360px] md:min-h-[420px]',
+    heightClass: 'h-[240px] xs:h-[280px] sm:h-[340px] md:h-[400px]',
   },
 
   // Block 3: Asymmetric composition (img-6 & img-7)
@@ -55,14 +55,14 @@ const projectGallery: ProjectItem[] = [
     number: '06',
     src: '/img-6.jpg',
     colSpan: 'md:col-span-7',
-    minHeight: 'min-h-[300px] sm:min-h-[400px] md:min-h-[500px]',
+    heightClass: 'h-[250px] xs:h-[300px] sm:h-[380px] md:h-[480px]',
   },
   {
     id: 'work-07',
     number: '07',
     src: '/img-7.jpg',
     colSpan: 'md:col-span-5',
-    minHeight: 'min-h-[300px] sm:min-h-[400px] md:min-h-[500px]',
+    heightClass: 'h-[250px] xs:h-[300px] sm:h-[380px] md:h-[480px]',
   },
 
   // Block 4: Balanced dual frame (img-8 & img-9)
@@ -71,14 +71,14 @@ const projectGallery: ProjectItem[] = [
     number: '08',
     src: '/img-8.jpg',
     colSpan: 'md:col-span-6',
-    minHeight: 'min-h-[280px] sm:min-h-[380px] md:min-h-[440px]',
+    heightClass: 'h-[240px] xs:h-[280px] sm:h-[360px] md:h-[420px]',
   },
   {
     id: 'work-09',
     number: '09',
     src: '/img-9.jpg',
     colSpan: 'md:col-span-6',
-    minHeight: 'min-h-[280px] sm:min-h-[380px] md:min-h-[440px]',
+    heightClass: 'h-[240px] xs:h-[280px] sm:h-[360px] md:h-[420px]',
   },
 ];
 
@@ -86,17 +86,17 @@ export const Projects: React.FC = () => {
   return (
     <section
       id="projects"
-      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-24 sm:py-32 md:py-40 bg-[#F5F3EE] text-[#1C1C1B] select-none relative"
+      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-20 sm:py-28 md:py-36 bg-[#F5F3EE] text-[#1C1C1B] select-none relative w-full"
       style={{ backgroundColor: '#F5F3EE' }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 w-full">
         {/* Minimal Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 sm:mb-20 md:mb-24"
+          className="mb-12 sm:mb-16 md:mb-20"
         >
           <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
             PORTFOLIO
@@ -106,8 +106,8 @@ export const Projects: React.FC = () => {
           </h2>
         </motion.div>
 
-        {/* Editorial Masonry Gallery (No cards, no borders, no shadows) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
+        {/* Editorial Masonry Gallery (No cards, no borders, natural content-driven heights) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 lg:gap-9 w-full">
           {projectGallery.map((item, index) => (
             <motion.div
               key={item.id}
@@ -119,9 +119,9 @@ export const Projects: React.FC = () => {
                 delay: (index % 3) * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`${item.colSpan} relative group overflow-hidden bg-[#E8E4DA] cursor-pointer`}
+              className={`${item.colSpan} w-full relative group overflow-hidden bg-[#E8E4DA] cursor-pointer`}
             >
-              <div className={`w-full h-full ${item.minHeight} overflow-hidden relative`}>
+              <div className={`w-full ${item.heightClass} overflow-hidden relative`}>
                 <img
                   src={item.src}
                   alt={`Selected Architectural Work ${item.number}`}

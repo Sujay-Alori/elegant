@@ -12,25 +12,25 @@ export const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-24 sm:py-32 md:py-40 bg-[#F4F0E8] text-[#1C1C1B] select-none relative"
+      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-20 sm:py-28 md:py-36 bg-[#F4F0E8] text-[#1C1C1B] select-none relative w-full"
       style={{ backgroundColor: '#F4F0E8' }}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-12 lg:px-16">
+      <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 lg:px-16 w-full">
         {/* Contact Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl mb-16 sm:mb-20 md:mb-24"
+          className="max-w-3xl mb-12 sm:mb-16 md:mb-20"
         >
           {/* Eyebrow */}
-          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-5 sm:mb-6">
+          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-4 sm:mb-5">
             CONTACT
           </span>
 
           {/* Main Editorial Serif Heading */}
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.08] text-[#1C1C1B] tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.08] text-[#1C1C1B] tracking-tight">
             Let&apos;s build<br />
             something<br />
             timeless.
@@ -43,11 +43,11 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl"
+          className="max-w-3xl w-full"
         >
-          <form className="space-y-8 sm:space-y-10" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6 sm:space-y-8 md:space-y-10 w-full" onSubmit={(e) => e.preventDefault()}>
             {/* Name Field */}
-            <div>
+            <div className="w-full">
               <label className="block text-xs font-mono uppercase tracking-[0.2em] text-[#77736B] mb-2">
                 NAME
               </label>
@@ -56,13 +56,13 @@ export const Contact: React.FC = () => {
                 placeholder="Your full name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
+                className="w-full max-w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
               />
             </div>
 
             {/* Email & Phone Fields */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
-              <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 w-full">
+              <div className="w-full">
                 <label className="block text-xs font-mono uppercase tracking-[0.2em] text-[#77736B] mb-2">
                   EMAIL
                 </label>
@@ -71,10 +71,10 @@ export const Contact: React.FC = () => {
                   placeholder="Your email address"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
+                  className="w-full max-w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
                 />
               </div>
-              <div>
+              <div className="w-full">
                 <label className="block text-xs font-mono uppercase tracking-[0.2em] text-[#77736B] mb-2">
                   PHONE
                 </label>
@@ -83,13 +83,13 @@ export const Contact: React.FC = () => {
                   placeholder="Your phone number"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
+                  className="w-full max-w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200"
                 />
               </div>
             </div>
 
             {/* Message Field */}
-            <div>
+            <div className="w-full">
               <label className="block text-xs font-mono uppercase tracking-[0.2em] text-[#77736B] mb-2">
                 MESSAGE
               </label>
@@ -98,17 +98,17 @@ export const Contact: React.FC = () => {
                 placeholder="Tell us about your project or enquiry..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200 resize-none"
+                className="w-full max-w-full bg-transparent border-b border-[#1C1C1B]/20 py-3 text-sm sm:text-base text-[#1C1C1B] placeholder-[#1C1C1B]/35 focus:outline-none focus:border-[#1C1C1B] transition-colors duration-200 resize-none"
               />
             </div>
 
             {/* Submit Button opening WhatsApp in a new tab */}
-            <div className="pt-4">
+            <div className="pt-3 sm:pt-4">
               <a
                 href="https://wa.me/919937344779"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1C1C1B] text-[#F4F0E8] text-xs font-mono uppercase tracking-[0.25em] hover:bg-[#168BCB] transition-colors duration-300 outline-none cursor-pointer"
+                className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#1C1C1B] text-[#F4F0E8] text-xs font-mono uppercase tracking-[0.25em] hover:bg-[#168BCB] transition-colors duration-300 outline-none cursor-pointer"
               >
                 <span>SEND ENQUIRY</span>
                 <span className="transform group-hover:translate-x-1 transition-transform duration-300">

@@ -12,7 +12,7 @@ export function App() {
   const [preloaderFinished, setPreloaderFinished] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#171817] text-[#FFFFFF] selection:bg-[#168BCB] selection:text-[#FFFFFF] relative">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#171817] text-[#FFFFFF] selection:bg-[#168BCB] selection:text-[#FFFFFF] relative">
       {/* Fullscreen Minimal Preloader */}
       {!preloaderFinished && (
         <Preloader onComplete={() => setPreloaderFinished(true)} />
@@ -24,7 +24,7 @@ export function App() {
           {/* Top Architectural Header (Logo left, MENU lines right, Ivory #F4F0E8 background) */}
           <Header />
 
-          <main>
+          <main className="w-full max-w-full overflow-x-hidden">
             {/* 1. Home Hero Section (Dark Charcoal #171817) */}
             <Hero />
 

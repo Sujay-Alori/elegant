@@ -61,17 +61,13 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      {/* 
-        Top Ivory Navbar:
-        Remains pinned and visible at z-[100] with the warm #F4F0E8 background
-        whether the menu is closed or open.
-      */}
+      {/* Top Ivory Navbar */}
       <header
-        className="fixed top-0 left-0 right-0 z-[100] bg-[#F4F0E8] h-[80px] sm:h-[95px] md:h-[110px] border-b border-[#D8D4CA] transition-colors duration-300 select-none"
+        className="fixed top-0 left-0 right-0 z-[100] bg-[#F4F0E8] h-[70px] xs:h-[80px] sm:h-[95px] md:h-[110px] border-b border-[#D8D4CA] transition-colors duration-300 select-none"
         style={{ backgroundColor: '#F4F0E8' }}
       >
-        <div className="w-full h-full px-6 sm:px-9 md:px-11 lg:px-12 flex items-center justify-between">
-          {/* FAR LEFT: Elegant Architects Balanced Small Logo Asset */}
+        <div className="w-full h-full px-4 xs:px-6 sm:px-9 md:px-11 lg:px-12 flex items-center justify-between">
+          {/* FAR LEFT: Elegant Architects Logo */}
           <a
             href="#home"
             onClick={() => setIsOpen(false)}
@@ -81,25 +77,21 @@ export const Header: React.FC = () => {
             <img
               src={logoDarkImg}
               alt="Elegant Architects"
-              className="w-[102px] sm:w-[120px] md:w-[138px] h-auto object-contain select-none cursor-pointer"
+              className="w-[90px] xs:w-[102px] sm:w-[120px] md:w-[138px] h-auto object-contain select-none cursor-pointer"
               draggable={false}
             />
           </a>
 
-          {/* 
-            FAR RIGHT: Single Unified Menu/Close Toggle Control 
-            Remains in the exact same position, #242424 color, with full click target
-          */}
+          {/* FAR RIGHT: Single Unified Menu/Close Toggle Control */}
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={isOpen}
-            className="group flex items-center gap-3.5 bg-transparent border-0 py-3 px-2 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-[#242424]/40 hover:opacity-80 transition-opacity duration-200"
+            className="group flex items-center gap-2.5 xs:gap-3.5 bg-transparent border-0 py-2 px-1 xs:py-3 xs:px-2 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-[#242424]/40 hover:opacity-80 transition-opacity duration-200"
           >
             {/* Dual Horizontal Lines -> Symmetrical Intersecting X Morph */}
-            <div className="relative w-[24px] h-[16px] flex items-center justify-center">
-              {/* TOP LINE: Translates to center and rotates +45deg */}
+            <div className="relative w-[22px] xs:w-[24px] h-[16px] flex items-center justify-center">
               <motion.span
                 animate={{
                   y: isOpen ? 0 : -4,
@@ -109,10 +101,9 @@ export const Header: React.FC = () => {
                   duration: 0.4,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="absolute w-[24px] h-[2px] bg-[#242424] origin-center block rounded-full"
+                className="absolute w-[22px] xs:w-[24px] h-[2px] bg-[#242424] origin-center block rounded-full"
               />
 
-              {/* BOTTOM LINE: Translates to center and rotates -45deg */}
               <motion.span
                 animate={{
                   y: isOpen ? 0 : 4,
@@ -122,19 +113,19 @@ export const Header: React.FC = () => {
                   duration: 0.4,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="absolute w-[24px] h-[2px] bg-[#242424] origin-center block rounded-full"
+                className="absolute w-[22px] xs:w-[24px] h-[2px] bg-[#242424] origin-center block rounded-full"
               />
             </div>
 
             {/* Menu Label: MENU <-> CLOSE in #242424 */}
-            <span className="text-xs sm:text-[13px] font-mono uppercase tracking-[0.25em] font-semibold text-[#242424] min-w-[50px] text-left">
+            <span className="text-[11px] xs:text-xs sm:text-[13px] font-mono uppercase tracking-[0.25em] font-semibold text-[#242424] min-w-[44px] xs:min-w-[50px] text-left">
               {isOpen ? 'CLOSE' : 'MENU'}
             </span>
           </button>
         </div>
       </header>
 
-      {/* Full-Screen Architectural Navigation Overlay (Positioned at z-[90] below the ivory header) */}
+      {/* Full-Screen Architectural Navigation Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -143,7 +134,7 @@ export const Header: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[90] bg-[#151515] text-[#FFFFFF] flex flex-col justify-between px-8 py-10 sm:px-14 sm:py-14 md:px-20 md:py-16 overflow-y-auto select-none pt-[100px] sm:pt-[115px] md:pt-[130px]"
+            className="fixed inset-0 z-[90] bg-[#151515] text-[#FFFFFF] flex flex-col justify-between px-6 py-8 sm:px-14 sm:py-14 md:px-20 md:py-16 overflow-y-auto select-none pt-[90px] sm:pt-[115px] md:pt-[130px]"
             style={{ backgroundColor: '#151515' }}
           >
             {/* Top Minimal Brand Datum / Coordinate */}
@@ -152,9 +143,9 @@ export const Header: React.FC = () => {
               <span className="hidden sm:inline">20°17&apos;N 85°49&apos;E</span>
             </div>
 
-            {/* Central Navigation Items (01 HOME to 06 CONTACT including MAP) */}
-            <nav className="my-auto py-8">
-              <ul className="flex flex-col space-y-4 sm:space-y-6 md:space-y-7">
+            {/* Central Navigation Items */}
+            <nav className="my-auto py-6 sm:py-8">
+              <ul className="flex flex-col space-y-3.5 sm:space-y-6 md:space-y-7">
                 {menuItems.map((item, index) => {
                   const isHovered = hoveredId === item.id;
 
@@ -179,7 +170,7 @@ export const Header: React.FC = () => {
                         className="group flex items-baseline text-left bg-transparent border-0 p-0 cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-white/40"
                       >
                         {/* Number Index: 01 to 06 */}
-                        <span className="text-xs sm:text-sm font-mono text-[#77736B] mr-4 sm:mr-6 tracking-widest group-hover:text-[#FFFFFF]/70 transition-colors duration-200">
+                        <span className="text-[11px] sm:text-sm font-mono text-[#77736B] mr-3 sm:mr-6 tracking-widest group-hover:text-[#FFFFFF]/70 transition-colors duration-200">
                           {item.number}
                         </span>
 
@@ -187,7 +178,7 @@ export const Header: React.FC = () => {
                         <motion.span
                           animate={{ x: isHovered ? 12 : 0 }}
                           transition={{ duration: 0.25, ease: 'easeOut' }}
-                          className="font-display font-light text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.12em] sm:tracking-[0.18em] uppercase text-[#FFFFFF]/85 group-hover:text-[#FFFFFF] transition-colors duration-200"
+                          className="font-display font-light text-xl xs:text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.1em] sm:tracking-[0.18em] uppercase text-[#FFFFFF]/85 group-hover:text-[#FFFFFF] transition-colors duration-200"
                         >
                           {item.title}
                         </motion.span>
@@ -210,7 +201,7 @@ export const Header: React.FC = () => {
               </ul>
             </nav>
 
-            {/* Bottom Minimal Area: Privacy Policy & Terms & Conditions on the left */}
+            {/* Bottom Minimal Area: Privacy Policy & Terms & Conditions */}
             <div className="pt-6 border-t border-white/[0.08]">
               <div className="flex items-center gap-6 sm:gap-8 text-[10px] sm:text-[11px] font-mono text-[#77736B] tracking-wider uppercase">
                 <a
