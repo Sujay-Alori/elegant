@@ -1,169 +1,197 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, PenTool, LayoutTemplate, FileCode2, Key, CheckCircle } from 'lucide-react';
-import type { ProcessStep } from '../types';
+import {
+  Users,
+  Lightbulb,
+  FileSpreadsheet,
+  HardHat,
+  Sparkles,
+  KeyRound,
+  ArrowRight,
+} from 'lucide-react';
+
+interface ProcessStage {
+  step: string;
+  title: string;
+  subtitle: string;
+  icon: React.ElementType;
+  colorName: string;
+  accentBg: string;
+  iconColor: string;
+  borderColor: string;
+  hoverBorder: string;
+  badgeBg: string;
+}
+
+const processStages: ProcessStage[] = [
+  {
+    step: '01',
+    title: 'Understanding Client Requirements',
+    subtitle: 'Meet & Agree',
+    icon: Users,
+    colorName: 'Blue',
+    accentBg: 'bg-sky-50/70',
+    iconColor: 'text-[#168BCB]',
+    borderColor: 'border-sky-200/80',
+    hoverBorder: 'hover:border-[#168BCB]',
+    badgeBg: 'bg-[#168BCB]',
+  },
+  {
+    step: '02',
+    title: 'Design Development',
+    subtitle: 'Idea & Concept',
+    icon: Lightbulb,
+    colorName: 'Teal',
+    accentBg: 'bg-teal-50/70',
+    iconColor: 'text-[#0D9488]',
+    borderColor: 'border-teal-200/80',
+    hoverBorder: 'hover:border-[#0D9488]',
+    badgeBg: 'bg-[#0D9488]',
+  },
+  {
+    step: '03',
+    title: 'Drawing & Estimate',
+    subtitle: 'Detailed drawings and project cost estimation',
+    icon: FileSpreadsheet,
+    colorName: 'Green',
+    accentBg: 'bg-emerald-50/70',
+    iconColor: 'text-[#16A34A]',
+    borderColor: 'border-emerald-200/80',
+    hoverBorder: 'hover:border-[#16A34A]',
+    badgeBg: 'bg-[#16A34A]',
+  },
+  {
+    step: '04',
+    title: 'Construction',
+    subtitle: 'Execution Stage Work',
+    icon: HardHat,
+    colorName: 'Orange',
+    accentBg: 'bg-orange-50/70',
+    iconColor: 'text-[#EA580C]',
+    borderColor: 'border-orange-200/80',
+    hoverBorder: 'hover:border-[#EA580C]',
+    badgeBg: 'bg-[#EA580C]',
+  },
+  {
+    step: '05',
+    title: 'Interior Furnishing',
+    subtitle: 'Interior finishing and furnishing',
+    icon: Sparkles,
+    colorName: 'Coral',
+    accentBg: 'bg-rose-50/70',
+    iconColor: 'text-[#E11D48]',
+    borderColor: 'border-rose-200/80',
+    hoverBorder: 'hover:border-[#E11D48]',
+    badgeBg: 'bg-[#E11D48]',
+  },
+  {
+    step: '06',
+    title: 'Project Handover',
+    subtitle: 'Final review and handover',
+    icon: KeyRound,
+    colorName: 'Pink',
+    accentBg: 'bg-pink-50/70',
+    iconColor: 'text-[#DB2777]',
+    borderColor: 'border-pink-200/80',
+    hoverBorder: 'hover:border-[#DB2777]',
+    badgeBg: 'bg-[#DB2777]',
+  },
+];
 
 export const Process: React.FC = () => {
-  const steps: ProcessStep[] = [
-    {
-      step: '01',
-      title: 'DISCOVER',
-      tagline: 'Vision & Site Analysis',
-      description: 'Understanding your vision and requirements.',
-      details: [
-        'Client aspiration & lifestyle briefing',
-        'Topographical survey & sun-path orientation analysis',
-        'Zoning regulations, setback & BDA statutory review',
-        'Budget parameterization & project roadmap'
-      ]
-    },
-    {
-      step: '02',
-      title: 'CONCEPT',
-      tagline: 'Design Direction & Massing',
-      description: 'Developing the design direction.',
-      details: [
-        'Preliminary zoning & spatial circulation sketches',
-        '3D conceptual massing & architectural volumes',
-        'Mood boards, material palettization & daylight studies',
-        'Iterative design alignment with client feedback'
-      ]
-    },
-    {
-      step: '03',
-      title: 'DESIGN',
-      tagline: 'Architecture & Interiors',
-      description: 'Refining architecture, interiors and details.',
-      details: [
-        'Photorealistic 3D architectural renderings & walkthroughs',
-        'Facade articulation & climate-responsive shading',
-        'Interior spatial schematics, ceiling & lighting design',
-        'Material finish selection and structural interface'
-      ]
-    },
-    {
-      step: '04',
-      title: 'DEVELOP',
-      tagline: 'Technical Drawings & BOQ',
-      description: 'Technical drawings and project coordination.',
-      details: [
-        'Comprehensive working drawings (GFC) & detail sheets',
-        'Integrated structural, electrical, plumbing (MEP) schematics',
-        'Precise Bill of Quantities (BOQ) & cost estimation',
-        'Municipal authority approvals & contractor tendering'
-      ]
-    },
-    {
-      step: '05',
-      title: 'DELIVER',
-      tagline: 'Execution & Handover',
-      description: 'Turning the vision into reality.',
-      details: [
-        'Rigorous on-site architectural quality supervision',
-        'Contractor alignment & milestone progress tracking',
-        'Finishing audits, fixture testing & snag clearing',
-        'Final handover of your completed architectural landmark'
-      ]
-    }
-  ];
-
-  const getStepIcon = (index: number) => {
-    switch (index) {
-      case 0: return <Search className="w-5 h-5" />;
-      case 1: return <PenTool className="w-5 h-5" />;
-      case 2: return <LayoutTemplate className="w-5 h-5" />;
-      case 3: return <FileCode2 className="w-5 h-5" />;
-      case 4: return <Key className="w-5 h-5" />;
-      default: return <CheckCircle className="w-5 h-5" />;
-    }
-  };
-
   return (
-    <section id="process" className="py-24 sm:py-32 bg-[#FFFFFF] relative overflow-hidden">
-      {/* Blueprint Grid Lines */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="process"
+      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-16 sm:py-20 md:py-28 bg-[#FAF7F2] text-[#1C1C1B] relative w-full overflow-hidden"
+      style={{ backgroundColor: '#FAF7F2' }}
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 pb-6 border-b border-slate-200">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-[2px] bg-[#0284C7]" />
-            <span className="text-xs font-mono font-semibold uppercase tracking-[0.25em] text-[#0284C7]">
-              METHODOLOGY & TIMELINE
-            </span>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-12 sm:mb-16 md:mb-20 max-w-3xl mx-auto"
+        >
+          {/* Centered Decorative Line Accent */}
+          <div className="flex items-center justify-center gap-1.5 mb-3">
+            <span className="w-6 h-[2px] bg-[#168BCB] rounded-full" />
+            <span className="w-2 h-2 rotate-45 bg-[#D92525] rounded-[1px]" />
+            <span className="w-6 h-[2px] bg-[#168BCB] rounded-full" />
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold font-display tracking-tight text-[#0A0D14] uppercase">
-            Our Process
+
+          <span className="block text-xs font-mono uppercase tracking-[0.28em] text-[#77736B] mb-2 font-medium">
+            METHODOLOGY
+          </span>
+
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-normal text-[#1C1C1B] tracking-tight uppercase mb-3.5 leading-tight">
+            Our Process of Work
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 mt-3 font-normal">
-            A structured, 5-phase architectural workflow delivering seamless execution from early concept through final occupancy.
+
+          <p className="font-sans text-xs sm:text-sm md:text-base text-[#66635B] leading-relaxed max-w-2xl mx-auto">
+            A disciplined, sequential architectural workflow taking your project seamlessly from initial consultation to turnkey handover.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Timeline Sequence */}
-        <div className="relative">
-          {/* Central Connecting Blueprint Line (Desktop) */}
-          <div className="hidden lg:block absolute left-1/2 top-8 bottom-8 w-[2px] bg-slate-200 -translate-x-1/2">
-            <div className="h-full w-full bg-gradient-to-b from-[#0284C7] via-[#38BDF8] to-[#DC2626]" />
-          </div>
+        {/* Desktop & Tablet Connected Process Infographic Sequence */}
+        <div className="relative w-full">
+          {/* Subtle Horizontal Connecting Rail for Desktop */}
+          <div className="hidden lg:block absolute top-[92px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-sky-200 via-emerald-200 via-orange-200 via-rose-200 to-pink-200 z-0 pointer-events-none" />
 
-          <div className="space-y-12 lg:space-y-16">
-            {steps.map((step, idx) => {
-              const isEven = idx % 2 === 1;
-
+          {/* Grid of 6 Tall Capsule Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 sm:gap-4 lg:gap-3.5 relative z-10">
+            {processStages.map((stage, idx) => {
+              const Icon = stage.icon;
               return (
                 <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={stage.step}
+                  initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className={`flex flex-col lg:flex-row items-center gap-8 ${
-                    isEven ? 'lg:flex-row-reverse' : ''
-                  }`}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{
+                    duration: 0.55,
+                    delay: idx * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className={`group relative bg-white rounded-[32px] sm:rounded-[36px] p-5 sm:p-5 lg:p-4.5 border ${stage.borderColor} ${stage.hoverBorder} shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[300px] sm:min-h-[320px] lg:min-h-[350px] hover:-translate-y-1.5`}
                 >
-                  {/* Process Card */}
-                  <div className="w-full lg:w-[calc(50%-48px)]">
-                    <div className="bg-slate-50 hover:bg-white rounded-xl p-6 sm:p-8 border border-slate-200 hover:border-[#0284C7] shadow-sm hover:shadow-xl transition-all duration-300 group">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-mono font-bold tracking-widest text-[#0284C7] bg-sky-50 px-3 py-1 rounded border border-sky-100">
-                          PHASE {step.step}
-                        </span>
-                        <span className="text-xs font-mono text-slate-400 uppercase">
-                          {step.tagline}
-                        </span>
-                      </div>
-
-                      <h3 className="text-2xl font-bold font-display tracking-wide uppercase text-[#0A0D14] group-hover:text-[#0284C7] transition-colors mb-2">
-                        {step.step} — {step.title}
-                      </h3>
-
-                      <p className="text-base text-slate-700 font-medium mb-4">
-                        {step.description}
-                      </p>
-
-                      {/* Detailed Phase Checklist */}
-                      <ul className="space-y-2 pt-4 border-t border-slate-200/80 text-xs text-slate-600">
-                        {step.details.map((detail, dIdx) => (
-                          <li key={dIdx} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#0284C7] mt-1.5 flex-shrink-0" />
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  {/* Top Stage Capsule / Number Pill */}
+                  <div className="w-full flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-1 mb-4">
+                      <span
+                        className={`text-[10px] font-mono font-bold text-white px-2.5 py-0.5 rounded-full ${stage.badgeBg} shadow-xs`}
+                      >
+                        STAGE {stage.step}
+                      </span>
                     </div>
+
+                    {/* Circular Icon Container */}
+                    <div
+                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full ${stage.accentBg} ${stage.iconColor} border ${stage.borderColor} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-108 shadow-xs`}
+                    >
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.75]" />
+                    </div>
+
+                    {/* Stage Title */}
+                    <h3 className="font-serif text-sm sm:text-[15px] font-bold text-[#1C1C1B] tracking-tight uppercase leading-snug mb-2.5 px-1 min-h-[2.5rem] flex items-center justify-center">
+                      {stage.title}
+                    </h3>
                   </div>
 
-                  {/* Central Node Badge */}
-                  <div className="relative z-10 flex-shrink-0 w-14 h-14 rounded-xl bg-[#0A0D14] text-white flex items-center justify-center border-2 border-white shadow-xl group">
-                    <div className="text-[#38BDF8] group-hover:scale-110 transition-transform">
-                      {getStepIcon(idx)}
-                    </div>
-                    <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#DC2626] rounded-full border-2 border-white" />
+                  {/* Stage Supporting Text */}
+                  <div className="w-full pt-3 border-t border-[#F0ECE1] mt-auto">
+                    <p className="font-sans text-[11px] sm:text-xs text-[#55524D] leading-relaxed">
+                      {stage.subtitle}
+                    </p>
                   </div>
 
-                  {/* Empty Spacer Column for Desktop alternating layout */}
-                  <div className="hidden lg:block w-[calc(50%-48px)]" />
+                  {/* Flow Arrow indicator on mobile/tablet */}
+                  {idx < processStages.length - 1 && (
+                    <div className="lg:hidden absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white border border-[#D8D4CA] flex items-center justify-center text-[#77736B] z-20 shadow-xs sm:hidden">
+                      <ArrowRight className="w-3 h-3 rotate-90" />
+                    </div>
+                  )}
                 </motion.div>
               );
             })}
@@ -173,3 +201,5 @@ export const Process: React.FC = () => {
     </section>
   );
 };
+
+export default Process;

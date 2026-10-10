@@ -15,8 +15,7 @@ const menuItems: MenuItem[] = [
   { id: 'projects', number: '02', title: 'PROJECTS', href: '#projects' },
   { id: 'about', number: '03', title: 'ABOUT', href: '#about' },
   { id: 'services', number: '04', title: 'SERVICES', href: '#services' },
-  { id: 'map', number: '05', title: 'MAP', href: 'https://maps.app.goo.gl/DS2J3d8okmhyB24BA', isExternal: true },
-  { id: 'contact', number: '06', title: 'CONTACT', href: '#contact' },
+  { id: 'contact', number: '05', title: 'CONTACT', href: '#contact' },
 ];
 
 export const Header: React.FC = () => {

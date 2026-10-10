@@ -1,305 +1,165 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import {
+  Compass,
+  Paintbrush,
+  HardHat,
+  ClipboardCheck,
+  Ruler,
+  Trees,
+  Calculator,
+  Crosshair,
+  FileCheck2,
+  ArrowRight,
+  type LucideIcon,
+} from 'lucide-react';
+import { servicesData } from '../data/servicesData';
 
-interface ServiceItem {
-  number: string;
-  title: string;
-  description?: string;
-  subtitle?: string;
-}
-
-const servicesList: ServiceItem[] = [
-  {
-    number: '01',
-    title: 'ARCHITECTURAL DESIGN',
-    description:
-      'We provide to you, we will take into consideration, of your individual tastes and designs. If you can express clearly about the type of Architecture & Interiors you would like to have for your house.',
-  },
-  {
-    number: '02',
-    title: 'INTERIOR DESIGN & EXECUTION (TURNKEY)',
-    description:
-      'We understand that your space is more than just a place of —it’s an extension of your brand and your promise to those you do business /live with us.',
-  },
-  { number: '03', title: 'CONSTRUCTION (TURNKEY)' },
-  { number: '04', title: 'PROJECT MANAGEMENT CONSULTANT' },
-  { number: '05', title: 'STRUCTURAL DESIGN' },
-  {
-    number: '06',
-    title: 'LANDSCAPE DESIGN',
-    subtitle: 'Vastu Services',
-    description:
-      'Vastu Shastra services are an effective & versatile way to make a radical difference in your life. It plays an important role in health, happiness & harmony. A correct vastu gives you positive energy so that environment works in your favor.',
-  },
-  { number: '07', title: 'ESTIMATION & VALUATION' },
-  { number: '08', title: 'SURVEYOR' },
-  { number: '09', title: 'BUILDING APPROVAL' },
-];
-
-const processList: string[] = [
-  'Understanding Clients Requirements (Meet & Agree)',
-  'Design Development (Idea & Concept)',
-  'Drawing & Estimate',
-  'Construction (Execution Stage Work)',
-  'Interior Furnishing',
-  'Project Handover',
-];
-
-const teamList: string[] = [
-  'Ashok Kumar Sethi. Principal Architects, Founder',
-  'Santosh Sahu, Site Engineer',
-  'Rajashree Sahoo – Structural Engineer',
-  'Mukta Rath – Assistant Architects',
-  'Avijit Mohanty – Jr. Architects',
-  'Rabin Bisoi – Site Architects/Engineer.',
-];
-
-const statsList: string[] = [
-  'Finish Project – 109',
-  'Happy Clients – 92',
-  'Year of Experience – 06',
-  'Team Member – 66',
-];
+// Map icon names to Lucide icon components
+const iconMap: Record<string, LucideIcon> = {
+  Compass,
+  Paintbrush,
+  HardHat,
+  ClipboardCheck,
+  Ruler,
+  Trees,
+  Calculator,
+  Crosshair,
+  FileCheck2,
+};
 
 export const Services: React.FC = () => {
-  const [expandedNumber, setExpandedNumber] = useState<string | null>(null);
-
-  const toggleExpand = (service: ServiceItem) => {
-    if (!service.description) return;
-    setExpandedNumber((prev) => (prev === service.number ? null : service.number));
+  const handleScrollToContact = (serviceTitle: string) => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const messageInput = contactSection.querySelector('textarea') as HTMLTextAreaElement | null;
+        if (messageInput) {
+          messageInput.value = `I am interested in consulting regarding: ${serviceTitle}.`;
+          messageInput.focus();
+        }
+      }, 400);
+    }
   };
 
   return (
     <section
       id="services"
-      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-20 sm:py-28 md:py-36 bg-[#F4F0E8] text-[#1C1C1B] select-none w-full"
+      className="scroll-mt-[70px] xs:scroll-mt-[80px] sm:scroll-mt-[95px] md:scroll-mt-[110px] py-16 sm:py-20 md:py-24 bg-[#F4F0E8] text-[#1C1C1B] relative w-full"
       style={{ backgroundColor: '#F4F0E8' }}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-10 md:px-12 w-full">
-        {/* 1. SERVICES Section */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
+        {/* Top Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 sm:mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-10 sm:mb-14 max-w-3xl mx-auto"
         >
-          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
+          {/* Centered Decorative Accent Line */}
+          <div className="flex items-center justify-center gap-1.5 mb-3">
+            <span className="w-6 h-[2px] bg-[#168BCB] rounded-full" />
+            <span className="w-2 h-2 rotate-45 bg-[#D92525] rounded-[1px]" />
+            <span className="w-6 h-[2px] bg-[#168BCB] rounded-full" />
+          </div>
+
+          {/* Centered Eyebrow */}
+          <span className="block text-xs font-mono uppercase tracking-[0.25em] text-[#77736B] mb-1.5 font-medium">
             OUR EXPERTISE
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C1C1B] tracking-tight uppercase">
-            SERVICES
+
+          {/* Centered Serif Main Heading */}
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-[42px] font-normal text-[#1C1C1B] tracking-tight uppercase mb-3 leading-tight">
+            Services We Offer
           </h2>
+
+          {/* Supporting Subheading */}
+          <p className="font-sans text-xs sm:text-sm text-[#66635B] leading-relaxed max-w-xl mx-auto">
+            Comprehensive design, civil engineering, and turnkey execution solutions crafted with architectural excellence.
+          </p>
         </motion.div>
 
-        {/* Top Thin Horizontal Divider */}
-        <div className="w-full h-[1px] bg-[#D8D4CA]" />
-
-        {/* Clean Vertical Numbered Editorial List */}
-        <div className="w-full flex flex-col">
-          {servicesList.map((service, index) => {
-            const isExpandable = Boolean(service.description);
-            const isExpanded = expandedNumber === service.number;
+        {/* Compact 3-Column Grid on Desktop, 2 on Tablets, 1 on Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-6 w-full">
+          {servicesData.map((service, index) => {
+            const IconComponent = iconMap[service.iconName] || Compass;
 
             return (
               <motion.div
-                key={service.number}
-                initial={{ opacity: 0, y: 14 }}
+                key={service.id || service.number}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
+                viewport={{ once: true, margin: '-40px' }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.04,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                onClick={() => toggleExpand(service)}
-                className={`group w-full py-4 xs:py-5 sm:py-6 md:py-8 border-b border-[#D8D4CA] flex flex-col transition-colors duration-300 ${
-                  isExpandable ? 'cursor-pointer' : 'cursor-default'
-                }`}
+                className="group relative bg-white rounded-xl border border-[#E8E4DA] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.07)] hover:border-[#168BCB]/40 transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden hover:-translate-y-1"
               >
-                <div className="flex items-baseline gap-3 xs:gap-4 sm:gap-8 md:gap-12 w-full">
-                  {/* Number on the left */}
-                  <span className="font-mono text-xs sm:text-sm md:text-base text-[#77736B] tracking-widest min-w-[24px] xs:min-w-[28px] sm:min-w-[36px] md:min-w-[44px] shrink-0">
-                    {service.number}
-                  </span>
+                {/* Compact Decorative Top Banner with Angled Geometric Facet */}
+                <div className="relative w-full overflow-hidden bg-[#FAF7F2]">
+                  <div
+                    className="h-14 sm:h-16 w-full bg-gradient-to-b from-[#F3ECE1] to-[#EAE0D1] transition-colors duration-300 group-hover:from-[#EFE6DB] group-hover:to-[#E4D8C8]"
+                    style={{
+                      clipPath: 'polygon(0 0, 100% 0, 100% 65%, 50% 98%, 0% 65%)',
+                    }}
+                  />
 
-                  {/* Service Title and Expandable Content */}
-                  <div className="flex-1 flex flex-col min-w-0">
-                    <div className="flex items-center justify-between w-full">
-                      <motion.span
-                        whileHover={isExpandable ? { x: 4 } : {}}
-                        transition={{ duration: 0.2, ease: 'easeOut' }}
-                        className={`font-serif text-sm xs:text-base sm:text-2xl md:text-3xl lg:text-[32px] font-normal tracking-[0.02em] sm:tracking-[0.03em] uppercase transition-colors duration-300 leading-snug break-words ${
-                          isExpanded
-                            ? 'text-[#168BCB]'
-                            : isExpandable
-                            ? 'text-[#1C1C1B] group-hover:text-[#168BCB]'
-                            : 'text-[#1C1C1B]'
-                        }`}
-                      >
-                        {service.title}
-                      </motion.span>
-                    </div>
+                  {/* Compact Circular Icon centered at the top */}
+                  <div className="absolute top-4 sm:top-5 left-1/2 -translate-x-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1C1C1B] text-white flex items-center justify-center shadow-sm ring-4 ring-white group-hover:bg-[#168BCB] transition-colors duration-300 z-10">
+                    <IconComponent className="w-5 h-5 sm:w-5 sm:h-5 stroke-[1.75]" />
+                  </div>
+                </div>
 
-                    {/* Expandable Smooth Description Content */}
-                    <AnimatePresence initial={false}>
-                      {isExpanded && service.description && (
-                        <motion.div
-                          key="content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{
-                            duration: 0.35,
-                            ease: [0.16, 1, 0.3, 1],
-                          }}
-                          className="overflow-hidden w-full"
-                        >
-                          <div className="pt-3 sm:pt-4 md:pt-5 max-w-3xl space-y-2">
-                            {service.subtitle && (
-                              <h4 className="font-serif text-sm sm:text-base md:text-lg font-medium text-[#1C1C1B] tracking-wide">
-                                {service.subtitle}
-                              </h4>
-                            )}
-                            <p className="font-sans text-xs xs:text-sm sm:text-base font-normal text-[#55524D] leading-relaxed break-words">
-                              {service.description}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                {/* Compact Card Content Body */}
+                <div className="pt-5 sm:pt-6 pb-5 px-5 sm:px-6 flex flex-col items-center text-center flex-1 justify-between">
+                  <div className="w-full">
+                    {/* Service Number Index */}
+                    <span className="font-mono text-[10px] sm:text-[11px] text-[#77736B] tracking-[0.2em] uppercase block mb-1 font-medium">
+                      {service.number}
+                    </span>
+
+                    {/* Service Title */}
+                    <h3 className="font-serif text-base sm:text-[17px] font-bold text-[#1C1C1B] tracking-tight uppercase mb-2.5 min-h-[2.5rem] flex items-center justify-center leading-snug">
+                      {service.title}
+                    </h3>
+
+                    {/* Optional Subheading (for VASTU SERVICES on Landscape Design) */}
+                    {service.subheading && (
+                      <span className="block font-mono text-[10px] sm:text-[11px] font-bold text-[#168BCB] tracking-[0.2em] uppercase mb-2">
+                        {service.subheading}
+                      </span>
+                    )}
+
+                    {/* Exact Service Description directly beneath title */}
+                    <p className="font-sans text-xs text-[#55524D] leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Direct "Read More" Contact / Inquiry Link */}
+                  <div className="w-full pt-3 border-t border-[#F2EFE8] flex justify-center mt-auto">
+                    <button
+                      type="button"
+                      onClick={() => handleScrollToContact(service.title)}
+                      className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-200 cursor-pointer"
+                    >
+                      <span className="w-1.5 h-1.5 bg-[#168BCB] rounded-[1px] shrink-0" />
+                      <span>Read More</span>
+                      <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </button>
                   </div>
                 </div>
               </motion.div>
             );
           })}
         </div>
-
-        {/* 2. OUR PROCESS OF WORK Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 xs:mt-20 sm:mt-28 md:mt-36 mb-8 sm:mb-12"
-        >
-          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
-            METHODOLOGY
-          </span>
-          <h3 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C1C1B] tracking-tight uppercase">
-            OUR PROCESS OF WORK
-          </h3>
-        </motion.div>
-
-        {/* Process Top Thin Horizontal Divider */}
-        <div className="w-full h-[1px] bg-[#D8D4CA]" />
-
-        {/* Process Vertical List */}
-        <div className="w-full flex flex-col">
-          {processList.map((item, index) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.04,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="group w-full py-4 xs:py-5 sm:py-6 md:py-8 border-b border-[#D8D4CA] flex items-baseline gap-3 xs:gap-4 sm:gap-6 md:gap-8 transition-colors duration-300 cursor-default"
-            >
-              <span className="text-[#168BCB] text-sm xs:text-base sm:text-xl md:text-2xl shrink-0 font-serif select-none">
-                ➢
-              </span>
-              <motion.span
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="font-serif text-sm xs:text-base sm:text-2xl md:text-3xl lg:text-[32px] font-normal tracking-[0.02em] sm:tracking-[0.03em] uppercase text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-300 leading-snug break-words flex-1 min-w-0"
-              >
-                {item}
-              </motion.span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* 3. ELEGANT TEAM Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 xs:mt-20 sm:mt-28 md:mt-36 mb-8 sm:mb-12"
-        >
-          <span className="block text-[11px] sm:text-xs font-mono uppercase tracking-[0.3em] text-[#77736B] mb-3">
-            PEOPLE & EXPERTISE
-          </span>
-          <h3 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C1C1B] tracking-tight uppercase">
-            ELEGANT TEAM
-          </h3>
-        </motion.div>
-
-        {/* Team Top Thin Horizontal Divider */}
-        <div className="w-full h-[1px] bg-[#D8D4CA]" />
-
-        {/* Team Members Vertical List */}
-        <div className="w-full flex flex-col">
-          {teamList.map((member, index) => (
-            <motion.div
-              key={member}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.04,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="group w-full py-4 xs:py-5 sm:py-6 md:py-8 border-b border-[#D8D4CA] flex items-baseline gap-3 xs:gap-4 sm:gap-6 md:gap-8 transition-colors duration-300 cursor-default"
-            >
-              <span className="text-[#168BCB] text-sm xs:text-base sm:text-xl md:text-2xl shrink-0 font-serif select-none">
-                ➢
-              </span>
-              <motion.span
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="font-serif text-sm xs:text-base sm:text-2xl md:text-3xl lg:text-[32px] font-normal tracking-[0.02em] sm:tracking-[0.03em] uppercase text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-300 leading-snug break-words flex-1 min-w-0"
-              >
-                {member}
-              </motion.span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Statistics Vertical List directly below Team */}
-        <div className="w-full flex flex-col mt-6 sm:mt-10">
-          {statsList.map((stat, index) => (
-            <motion.div
-              key={stat}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.04,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="group w-full py-4 xs:py-5 sm:py-6 md:py-8 border-b border-[#D8D4CA] flex items-baseline gap-3 xs:gap-4 sm:gap-6 md:gap-8 transition-colors duration-300 cursor-default"
-            >
-              <span className="text-[#168BCB] text-sm xs:text-base sm:text-xl md:text-2xl shrink-0 font-serif select-none">
-                ➢
-              </span>
-              <motion.span
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="font-serif text-sm xs:text-base sm:text-2xl md:text-3xl lg:text-[32px] font-normal tracking-[0.02em] sm:tracking-[0.03em] uppercase text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-300 leading-snug break-words flex-1 min-w-0"
-              >
-                {stat}
-              </motion.span>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
 };
+
+export default Services;

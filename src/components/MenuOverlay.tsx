@@ -13,8 +13,7 @@ const menuItems: MenuItem[] = [
   { id: 'projects', number: '02', title: 'PROJECTS', href: '#projects' },
   { id: 'about', number: '03', title: 'ABOUT', href: '#about' },
   { id: 'services', number: '04', title: 'SERVICES', href: '#services' },
-  { id: 'blog', number: '05', title: 'BLOG', href: '#blog' },
-  { id: 'contact', number: '06', title: 'CONTACT', href: '#contact' },
+  { id: 'contact', number: '05', title: 'CONTACT', href: '#contact' },
 ];
 
 export const MenuOverlay: React.FC = () => {

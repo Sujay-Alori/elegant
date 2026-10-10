@@ -40,10 +40,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenConsultation }) => {
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Services', href: '#services', id: 'services' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
-    { name: 'Process', href: '#process', id: 'process' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 

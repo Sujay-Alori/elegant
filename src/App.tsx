@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Preloader } from './components/Preloader';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Projects } from './components/Projects';
 import { About } from './components/About';
 import { Services } from './components/Services';
+import { Process } from './components/Process';
+import { Team } from './components/Team';
+import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
@@ -25,23 +27,29 @@ export function App() {
           <Header />
 
           <main className="w-full max-w-full overflow-x-hidden">
-            {/* 1. Home Hero Section (Dark Charcoal #171817) */}
+            {/* 1. Hero Section */}
             <Hero />
 
-            {/* 2. Selected Works Portfolio Section (Warm Architectural Ivory #F5F3EE) */}
-            <Projects />
-
-            {/* 3. Editorial About Us & Vision Section (Warm Architectural Ivory #F5F3EE) */}
+            {/* 2. Existing About Section */}
             <About />
 
-            {/* 4. Editorial Services / Expertise Section (Warm Architectural Ivory #F4F0E8) */}
+            {/* 3. Compact Services Section */}
             <Services />
 
-            {/* 5. Minimalist Contact Section (Dark Charcoal #171817) */}
+            {/* 4. Methodology — Our Process of Work */}
+            <Process />
+
+            {/* 5. People & Expertise — Elegant Team & Statistics */}
+            <Team />
+
+            {/* 6. Existing Projects Section */}
+            <Projects />
+
+            {/* 7. Existing Contact Section */}
             <Contact />
           </main>
 
-          {/* 6. Editorial 3-Column Footer (Warm Architectural Ivory #F4F0E8) */}
+          {/* 8. Existing Footer */}
           <Footer />
         </>
       )}

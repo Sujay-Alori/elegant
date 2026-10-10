@@ -19,7 +19,9 @@ export interface ServiceItem {
   number: string;
   title: string;
   tagline: string;
+  subheading?: string;
   description: string;
+  shortDescription?: string;
   deliverables: string[];
   iconName: string;
 }
