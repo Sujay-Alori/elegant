@@ -27,25 +27,25 @@ export function App() {
           <Header />
 
           <main className="w-full max-w-full overflow-x-hidden">
-            {/* 1. Hero Section */}
+            {/* 1. Home (Hero) */}
             <Hero />
 
-            {/* 2. Existing About Section */}
-            <About />
-
-            {/* 3. Compact Services Section */}
-            <Services />
-
-            {/* 4. Methodology — Our Process of Work */}
-            <Process />
-
-            {/* 5. People & Expertise — Elegant Team & Statistics */}
-            <Team />
-
-            {/* 6. Existing Projects Section */}
+            {/* 2. Projects Section */}
             <Projects />
 
-            {/* 7. Existing Contact Section */}
+            {/* 3. About Section */}
+            <About />
+
+            {/* 4. Services Section */}
+            <Services />
+
+            {/* 5. Methodology — Our Process of Work */}
+            <Process />
+
+            {/* 6. People & Expertise — Elegant Team */}
+            <Team />
+
+            {/* 7. Contact Section */}
             <Contact />
           </main>
 
