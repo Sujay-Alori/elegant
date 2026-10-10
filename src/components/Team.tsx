@@ -29,7 +29,7 @@ const teamMembers: TeamMember[] = [
     name: 'Santosh Sahu',
     role: 'Site Engineer',
     initials: 'SS',
-    image: '/santosh.jpeg',
+    image: '/santhosh.jpeg',
     imageOnLeft: false,
     bgVariant: 'cream',
     objectPosition: 'center 20%',
@@ -125,7 +125,7 @@ export const Team: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* 2-Column Grid of Wide Horizontal Cards with Alternating Overlapping Photos */}
+        {/* 2-Column Grid of Wide Horizontal Cards with Enlarged Geometric Circular Photos */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-9 lg:gap-10 mb-16 sm:mb-24">
           {teamMembers.map((member, index) => {
             const hasError = imgErrors[member.id];
@@ -142,39 +142,43 @@ export const Team: React.FC = () => {
                   delay: index * 0.06,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`group relative rounded-2xl sm:rounded-3xl p-5 sm:p-7 border transition-all duration-300 ease-out shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:-translate-y-1 ${
+                className={`group relative rounded-3xl p-6 sm:p-7 md:p-8 border transition-all duration-300 ease-out shadow-[0_4px_22px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] hover:-translate-y-1 ${
                   member.bgVariant === 'light'
                     ? 'bg-white border-[#E8E4DA] hover:border-[#168BCB]/40'
                     : 'bg-[#F9F6F0] border-[#DFD9CD] hover:border-[#168BCB]/40'
                 }`}
               >
                 <div
-                  className={`flex flex-col sm:flex-row items-center gap-5 sm:gap-6 ${
-                    isLeft ? 'sm:flex-row' : 'sm:flex-row-reverse text-left sm:text-right'
+                  className={`flex flex-col sm:flex-row items-center gap-6 sm:gap-7 ${
+                    isLeft ? 'sm:flex-row text-center sm:text-left' : 'sm:flex-row-reverse text-center sm:text-right'
                   }`}
                 >
-                  {/* Overlapping Photo Frame */}
+                  {/* Attractive Enlarged Geometric Circular Frame */}
                   <div className="relative shrink-0">
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-white shadow-md bg-[#1C1C1B] flex items-center justify-center transition-transform duration-300 group-hover:scale-104">
+                    <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden ring-4 ring-white ring-offset-2 ring-offset-[#D8D4CA]/50 shadow-xl bg-[#1C1C1B] flex items-center justify-center transition-transform duration-300 group-hover:scale-104">
                       {!hasError ? (
                         <img
                           src={member.image}
                           alt={`${member.name} — ${member.role}`}
                           onError={() => handleImgError(member.id)}
                           style={{ objectPosition: member.objectPosition || 'center 20%' }}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
                           loading="lazy"
                         />
                       ) : (
-                        <div className="w-full h-full bg-[#1C1C1B] text-white flex items-center justify-center font-serif text-2xl font-bold tracking-widest">
+                        <div className="w-full h-full bg-[#1C1C1B] text-white flex items-center justify-center font-serif text-3xl font-bold tracking-widest">
                           {member.initials}
                         </div>
                       )}
                     </div>
 
-                    {/* Verified Role Badge Dot */}
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#168BCB] text-white flex items-center justify-center shadow-xs text-[10px] ring-2 ring-white">
-                      <UserCheck className="w-3.5 h-3.5" />
+                    {/* Role Badge Icon */}
+                    <div
+                      className={`absolute bottom-1 w-7 h-7 rounded-full bg-[#168BCB] text-white flex items-center justify-center shadow-md text-xs ring-2 ring-white ${
+                        isLeft ? 'right-1' : 'left-1'
+                      }`}
+                    >
+                      <UserCheck className="w-4 h-4" />
                     </div>
                   </div>
 
@@ -182,7 +186,7 @@ export const Team: React.FC = () => {
                   <div className="flex-1 min-w-0 flex flex-col justify-center">
                     <div
                       className={`flex items-center gap-2 mb-1.5 ${
-                        isLeft ? 'justify-start' : 'justify-start sm:justify-end'
+                        isLeft ? 'justify-center sm:justify-start' : 'justify-center sm:justify-end'
                       }`}
                     >
                       <span className="font-mono text-[10px] sm:text-[11px] text-[#77736B] tracking-[0.2em] uppercase font-medium">
@@ -190,17 +194,17 @@ export const Team: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1C1C1B] tracking-tight uppercase leading-snug mb-1 group-hover:text-[#168BCB] transition-colors duration-200">
+                    <h3 className="font-serif text-lg sm:text-xl md:text-[22px] font-bold text-[#1C1C1B] tracking-tight uppercase leading-snug mb-1.5 group-hover:text-[#168BCB] transition-colors duration-200">
                       {member.name}
                     </h3>
 
-                    <p className="font-sans text-xs sm:text-sm font-medium text-[#168BCB] tracking-wide mb-2.5">
+                    <p className="font-sans text-xs sm:text-sm font-medium text-[#168BCB] tracking-wide mb-3">
                       {member.role}
                     </p>
 
                     <div
-                      className={`w-10 h-[1.5px] bg-[#E0DBCF] group-hover:bg-[#168BCB] transition-colors duration-300 ${
-                        isLeft ? 'self-start' : 'self-start sm:self-end'
+                      className={`w-12 h-[1.5px] bg-[#E0DBCF] group-hover:bg-[#168BCB] transition-colors duration-300 ${
+                        isLeft ? 'self-center sm:self-start' : 'self-center sm:self-end'
                       }`}
                     />
                   </div>

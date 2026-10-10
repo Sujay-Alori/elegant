@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Users,
@@ -15,12 +15,12 @@ interface ProcessStage {
   title: string;
   subtitle: string;
   icon: React.ElementType;
-  colorName: string;
-  accentBg: string;
-  iconColor: string;
-  borderColor: string;
-  hoverBorder: string;
+  image?: string;
+  outlineColor: string;
   badgeBg: string;
+  iconBg: string;
+  iconColor: string;
+  softGlow: string;
 }
 
 const processStages: ProcessStage[] = [
@@ -29,76 +29,81 @@ const processStages: ProcessStage[] = [
     title: 'Understanding Client Requirements',
     subtitle: 'Meet & Agree',
     icon: Users,
-    colorName: 'Blue',
-    accentBg: 'bg-sky-50/70',
-    iconColor: 'text-[#168BCB]',
-    borderColor: 'border-sky-200/80',
-    hoverBorder: 'hover:border-[#168BCB]',
+    outlineColor: 'border-[#168BCB] hover:border-[#0E699B]',
     badgeBg: 'bg-[#168BCB]',
+    iconBg: 'bg-sky-50 text-[#168BCB] border-[#168BCB]/40',
+    iconColor: 'text-[#168BCB]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(22,139,203,0.18)]',
   },
   {
     step: '02',
     title: 'Design Development',
     subtitle: 'Idea & Concept',
     icon: Lightbulb,
-    colorName: 'Teal',
-    accentBg: 'bg-teal-50/70',
-    iconColor: 'text-[#0D9488]',
-    borderColor: 'border-teal-200/80',
-    hoverBorder: 'hover:border-[#0D9488]',
+    image: '/Architectural-Design.jpeg',
+    outlineColor: 'border-[#0D9488] hover:border-[#0F766E]',
     badgeBg: 'bg-[#0D9488]',
+    iconBg: 'bg-teal-50 text-[#0D9488] border-[#0D9488]/40',
+    iconColor: 'text-[#0D9488]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(13,148,136,0.18)]',
   },
   {
     step: '03',
     title: 'Drawing & Estimate',
-    subtitle: 'Detailed drawings and project cost estimation',
+    subtitle: 'Detailed Drawings & Costing',
     icon: FileSpreadsheet,
-    colorName: 'Green',
-    accentBg: 'bg-emerald-50/70',
-    iconColor: 'text-[#16A34A]',
-    borderColor: 'border-emerald-200/80',
-    hoverBorder: 'hover:border-[#16A34A]',
+    image: '/Cost-Estimation.jpg',
+    outlineColor: 'border-[#16A34A] hover:border-[#15803D]',
     badgeBg: 'bg-[#16A34A]',
+    iconBg: 'bg-emerald-50 text-[#16A34A] border-[#16A34A]/40',
+    iconColor: 'text-[#16A34A]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(22,163,74,0.18)]',
   },
   {
     step: '04',
     title: 'Construction',
     subtitle: 'Execution Stage Work',
     icon: HardHat,
-    colorName: 'Orange',
-    accentBg: 'bg-orange-50/70',
-    iconColor: 'text-[#EA580C]',
-    borderColor: 'border-orange-200/80',
-    hoverBorder: 'hover:border-[#EA580C]',
+    image: '/Construction.jpg',
+    outlineColor: 'border-[#EA580C] hover:border-[#C2410C]',
     badgeBg: 'bg-[#EA580C]',
+    iconBg: 'bg-orange-50 text-[#EA580C] border-[#EA580C]/40',
+    iconColor: 'text-[#EA580C]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(234,88,12,0.18)]',
   },
   {
     step: '05',
     title: 'Interior Furnishing',
-    subtitle: 'Interior finishing and furnishing',
+    subtitle: 'Interior Finishing & Styling',
     icon: Sparkles,
-    colorName: 'Coral',
-    accentBg: 'bg-rose-50/70',
-    iconColor: 'text-[#E11D48]',
-    borderColor: 'border-rose-200/80',
-    hoverBorder: 'hover:border-[#E11D48]',
+    image: '/Interior-Design.jpg',
+    outlineColor: 'border-[#E11D48] hover:border-[#BE123C]',
     badgeBg: 'bg-[#E11D48]',
+    iconBg: 'bg-rose-50 text-[#E11D48] border-[#E11D48]/40',
+    iconColor: 'text-[#E11D48]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(225,29,72,0.18)]',
   },
   {
     step: '06',
     title: 'Project Handover',
-    subtitle: 'Final review and handover',
+    subtitle: 'Final Review & Handover',
     icon: KeyRound,
-    colorName: 'Pink',
-    accentBg: 'bg-pink-50/70',
-    iconColor: 'text-[#DB2777]',
-    borderColor: 'border-pink-200/80',
-    hoverBorder: 'hover:border-[#DB2777]',
+    image: '/rev-1.jpg',
+    outlineColor: 'border-[#DB2777] hover:border-[#BE185D]',
     badgeBg: 'bg-[#DB2777]',
+    iconBg: 'bg-pink-50 text-[#DB2777] border-[#DB2777]/40',
+    iconColor: 'text-[#DB2777]',
+    softGlow: 'hover:shadow-[0_12px_32px_rgba(219,39,119,0.18)]',
   },
 ];
 
 export const Process: React.FC = () => {
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const handleImgError = (step: string) => {
+    setImgErrors((prev) => ({ ...prev, [step]: true }));
+  };
+
   return (
     <section
       id="process"
@@ -134,15 +139,17 @@ export const Process: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Desktop & Tablet Connected Process Infographic Sequence */}
+        {/* Connected Stages Infographic */}
         <div className="relative w-full">
-          {/* Subtle Horizontal Connecting Rail for Desktop */}
-          <div className="hidden lg:block absolute top-[92px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-sky-200 via-emerald-200 via-orange-200 via-rose-200 to-pink-200 z-0 pointer-events-none" />
+          {/* Horizontal Connecting Rail across stages on Desktop */}
+          <div className="hidden lg:block absolute top-[108px] left-[7%] right-[7%] h-[2.5px] bg-gradient-to-r from-[#168BCB] via-[#16A34A] via-[#EA580C] via-[#E11D48] to-[#DB2777] z-0 opacity-40 pointer-events-none" />
 
-          {/* Grid of 6 Tall Capsule Cards */}
+          {/* Grid of 6 Tall Capsule Cards with Colored Outlines */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 sm:gap-4 lg:gap-3.5 relative z-10">
             {processStages.map((stage, idx) => {
               const Icon = stage.icon;
+              const hasImg = Boolean(stage.image && !imgErrors[stage.step]);
+
               return (
                 <motion.div
                   key={stage.step}
@@ -154,42 +161,54 @@ export const Process: React.FC = () => {
                     delay: idx * 0.08,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className={`group relative bg-white rounded-[32px] sm:rounded-[36px] p-5 sm:p-5 lg:p-4.5 border ${stage.borderColor} ${stage.hoverBorder} shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[300px] sm:min-h-[320px] lg:min-h-[350px] hover:-translate-y-1.5`}
+                  className={`group relative bg-white rounded-[38px] p-5 sm:p-5 lg:p-4.5 border-2 ${stage.outlineColor} shadow-[0_4px_18px_rgba(0,0,0,0.03)] ${stage.softGlow} transition-all duration-300 flex flex-col items-center text-center justify-between min-h-[340px] sm:min-h-[360px] lg:min-h-[380px] hover:-translate-y-2`}
                 >
-                  {/* Top Stage Capsule / Number Pill */}
+                  {/* Top Content: Number Badge & Enlarged Circular Icon / Image */}
                   <div className="w-full flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-1 mb-4">
+                    {/* Stage Number Pill Badge */}
+                    <div className="flex items-center justify-center mb-4">
                       <span
-                        className={`text-[10px] font-mono font-bold text-white px-2.5 py-0.5 rounded-full ${stage.badgeBg} shadow-xs`}
+                        className={`text-[11px] font-mono font-bold text-white px-3 py-1 rounded-full ${stage.badgeBg} shadow-sm tracking-wider`}
                       >
                         STAGE {stage.step}
                       </span>
                     </div>
 
-                    {/* Circular Icon Container */}
+                    {/* Slightly Larger Centered Circular Background for Icon/Image */}
                     <div
-                      className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full ${stage.accentBg} ${stage.iconColor} border ${stage.borderColor} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-108 shadow-xs`}
+                      className={`w-16 h-16 sm:w-[72px] sm:h-[72px] md:w-[78px] md:h-[78px] rounded-full ${stage.iconBg} border-2 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-108 shadow-sm overflow-hidden`}
                     >
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.75]" />
+                      {hasImg ? (
+                        <img
+                          src={stage.image}
+                          alt={stage.title}
+                          onError={() => handleImgError(stage.step)}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Icon className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.8]" />
+                      )}
                     </div>
 
                     {/* Stage Title */}
-                    <h3 className="font-serif text-sm sm:text-[15px] font-bold text-[#1C1C1B] tracking-tight uppercase leading-snug mb-2.5 px-1 min-h-[2.5rem] flex items-center justify-center">
+                    <h3 className="font-serif text-sm sm:text-[15px] font-bold text-[#1C1C1B] tracking-tight uppercase leading-snug mb-2 px-1 min-h-[2.6rem] flex items-center justify-center">
                       {stage.title}
                     </h3>
                   </div>
 
-                  {/* Stage Supporting Text */}
-                  <div className="w-full pt-3 border-t border-[#F0ECE1] mt-auto">
-                    <p className="font-sans text-[11px] sm:text-xs text-[#55524D] leading-relaxed">
+                  {/* Stage Supporting Text & Bottom Decorative Accent Dot */}
+                  <div className="w-full pt-3 border-t border-[#F0ECE1] mt-auto flex flex-col items-center">
+                    <p className="font-sans text-[11px] sm:text-xs text-[#55524D] leading-relaxed mb-2 font-medium">
                       {stage.subtitle}
                     </p>
+                    <span className={`w-2 h-2 rounded-full ${stage.badgeBg} opacity-70`} />
                   </div>
 
                   {/* Flow Arrow indicator on mobile/tablet */}
                   {idx < processStages.length - 1 && (
-                    <div className="lg:hidden absolute -bottom-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-white border border-[#D8D4CA] flex items-center justify-center text-[#77736B] z-20 shadow-xs sm:hidden">
-                      <ArrowRight className="w-3 h-3 rotate-90" />
+                    <div className="lg:hidden absolute -bottom-3.5 left-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-white border border-[#D8D4CA] flex items-center justify-center text-[#77736B] z-20 shadow-xs sm:hidden">
+                      <ArrowRight className="w-3.5 h-3.5 rotate-90" />
                     </div>
                   )}
                 </motion.div>
