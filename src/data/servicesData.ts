@@ -14,7 +14,8 @@ export const servicesData: ServiceItem[] = [
       'Comprehensive Working & Construction Details',
       'Climate-Responsive & Bioclimatic Design Integration'
     ],
-    iconName: 'Compass'
+    iconName: 'Compass',
+    image: '/Architectural-Design.jpeg'
   },
   {
     id: 'interior-design-execution',
@@ -29,7 +30,8 @@ export const servicesData: ServiceItem[] = [
       'Architectural Lighting, Ceiling & Acoustic Schemes',
       'Complete On-Site Turnkey Execution & Project Handover'
     ],
-    iconName: 'Paintbrush'
+    iconName: 'Paintbrush',
+    image: '/Interior-Design.jpg'
   },
   {
     id: 'construction-turnkey',
@@ -37,14 +39,15 @@ export const servicesData: ServiceItem[] = [
     title: 'Construction (Turnkey)',
     tagline: 'Precision Civil Engineering & Full-Cycle Build',
     description:
-      'End-to-end turnkey civil construction with uncompromising engineering standards, premium grade materials, and on-schedule delivery.',
+      'Turnkey civil construction with uncompromised engineering and material quality.',
     deliverables: [
       'Foundation, Earthwork & RCC Structural Framework',
       'Certified Material Testing & Lab Concrete Audits',
       'Full-Time Site Engineers & Safety Compliance',
       'Guaranteed Milestone Timelines & Turnkey Handover'
     ],
-    iconName: 'HardHat'
+    iconName: 'HardHat',
+    image: '/Construction.jpg'
   },
   {
     id: 'project-management-consultant',
@@ -52,14 +55,15 @@ export const servicesData: ServiceItem[] = [
     title: 'Project Management Consultant',
     tagline: 'Client Advisory, Quality Audits & Site Governance',
     description:
-      'Rigorous on-site supervision, vendor coordination, cost optimization, quality audits, and critical-path timeline management.',
+      'End-to-end site supervision, vendor coordination, and quality audits.',
     deliverables: [
       'Multi-Vendor Coordination & Contract Administration',
       'Quality Assurance & Rigorous On-Site Audits',
       'Critical-Path Project Scheduling & Tracking',
       'Budget Optimization, Bill Verification & Cash Flow'
     ],
-    iconName: 'ClipboardCheck'
+    iconName: 'ClipboardCheck',
+    image: '/Construction-Management.jpg'
   },
   {
     id: 'structural-design',
@@ -67,14 +71,15 @@ export const servicesData: ServiceItem[] = [
     title: 'Structural Design',
     tagline: 'Earthquake-Resistant Analysis & RCC Engineering',
     description:
-      'Advanced structural engineering, RCC column-beam detailing, seismic stability analysis, and IS-code compliant safety frameworks.',
+      'Advanced earthquake-resistant structural analysis and RCC detailing.',
     deliverables: [
       'RCC & Structural Steel Frame Finite-Element Modeling',
       'Seismic Zone Analysis & High-Precision Foundation Design',
       'Column-Beam Layouts & Bar Bending Schedules (BBS)',
       'Structural Stability Vetting & Safety Certifications'
     ],
-    iconName: 'Ruler'
+    iconName: 'Ruler',
+    image: '/Structural-Design-1.jpg'
   },
   {
     id: 'landscape-design',
@@ -90,7 +95,8 @@ export const servicesData: ServiceItem[] = [
       'Water Features, Reflection Pools & Outdoor Illumination',
       'Vastu Shastra Principles for Harmonious Energy Flow'
     ],
-    iconName: 'Trees'
+    iconName: 'Trees',
+    image: '/Landscape-1.jpg'
   },
   {
     id: 'estimation-valuation',
@@ -98,14 +104,15 @@ export const servicesData: ServiceItem[] = [
     title: 'Estimation & Valuation',
     tagline: 'Detailed BOQs, Material Rate Analysis & Appraisals',
     description:
-      'Transparent Bill of Quantities (BOQ), material rate analyses, certified property valuations, and disciplined cost forecasting.',
+      'Accurate Bill of Quantities (BOQ) and certified asset valuations.',
     deliverables: [
       'Comprehensive Itemized Bill of Quantities (BOQ)',
       'Material Rate Analysis & Specification Scheduling',
       'Certified Property & Asset Valuation Reports',
       'Value Engineering & Financial Risk Forecasting'
     ],
-    iconName: 'Calculator'
+    iconName: 'Calculator',
+    image: '/Cost-Estimation.jpg'
   },
   {
     id: 'surveyor',
@@ -113,14 +120,15 @@ export const servicesData: ServiceItem[] = [
     title: 'Surveyor',
     tagline: 'Total Station Topography, Contours & Boundary Demarcation',
     description:
-      'High-precision digital Total Station land surveys, contour mapping, boundary demarcation, and structural grid setting-out.',
+      'Digital Total Station land demarcation and contour mapping.',
     deliverables: [
       'Digital Total Station & GNSS Topographical Surveys',
       'Contour Mapping & 3D Digital Elevation Modeling',
       'Boundary Demarcation & Encroachment Verification',
       'On-Site Column Grid & Baseline Setting-Out'
     ],
-    iconName: 'Crosshair'
+    iconName: 'Crosshair',
+    image: '/Survey.jpg'
   },
   {
     id: 'building-approval',
@@ -128,13 +136,14 @@ export const servicesData: ServiceItem[] = [
     title: 'Building Approval',
     tagline: 'Municipal Sanctions, FAR Compliance & Statutory NOCs',
     description:
-      'Comprehensive liaison, statutory submission drawings, municipal bylaw compliance, and sanction clearances from local authorities.',
+      'Statutory municipal sanction drawings and statutory NOC clearances.',
     deliverables: [
       'Municipal Sanction Drawing Preparation',
       'Zoning, FAR, Setback & Coverage Verification',
       'Liaison for Fire, Environmental & Structural NOCs',
       'BDA, BMC & Local Authority Approval Documentation'
     ],
-    iconName: 'FileCheck2'
+    iconName: 'FileCheck2',
+    image: '/rev-1.jpg'
   }
 ];

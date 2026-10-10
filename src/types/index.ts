@@ -24,6 +24,7 @@ export interface ServiceItem {
   shortDescription?: string;
   deliverables: string[];
   iconName: string;
+  image?: string;
 }
 
 export interface ProcessStep {

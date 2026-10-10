@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Compass,
@@ -28,6 +28,12 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export const Services: React.FC = () => {
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setImageErrors((prev) => ({ ...prev, [id]: true }));
+  };
+
   return (
     <section
       id="services"
@@ -70,6 +76,7 @@ export const Services: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 w-full">
           {servicesData.map((service, index) => {
             const IconComponent = iconMap[service.iconName] || Compass;
+            const hasImgError = imageErrors[service.id];
 
             return (
               <motion.div
@@ -82,9 +89,9 @@ export const Services: React.FC = () => {
                   delay: index * 0.04,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="relative bg-white rounded-2xl border border-[#E8E4DA] shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden cursor-default"
+                className="group relative bg-white rounded-2xl border border-[#E8E4DA] shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.07)] transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden cursor-default"
               >
-                {/* Decorative Top Section with Centered Prominent Icon (76-84px) */}
+                {/* Decorative Top Section with Centered Large Circular Icon / Image (76-88px) */}
                 <div className="relative w-full overflow-hidden bg-[#FAF7F2]">
                   {/* Decorative cream-colored facet banner */}
                   <div
@@ -94,9 +101,19 @@ export const Services: React.FC = () => {
                     }}
                   />
 
-                  {/* Enlarge Circular Icon Container: 76-84px on desktop, 30-36px icon */}
-                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[76px] h-[76px] sm:w-20 sm:h-20 md:w-[82px] md:h-[82px] rounded-full bg-[#1C1C1B] text-white flex items-center justify-center shadow-md ring-4 ring-white z-10">
-                    <IconComponent className="w-8 h-8 sm:w-8 sm:h-8 md:w-9 md:h-9 stroke-[1.6]" />
+                  {/* Large Circular Icon / Asset Container with Dark Background & White Outer Border */}
+                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-[84px] sm:h-[84px] md:w-[88px] md:h-[88px] rounded-full bg-[#1C1C1B] ring-4 ring-white shadow-lg overflow-hidden flex items-center justify-center z-10 transition-transform duration-300 group-hover:scale-105">
+                    {service.image && !hasImgError ? (
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        onError={() => handleImageError(service.id)}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <IconComponent className="w-8 h-8 sm:w-9 sm:h-9 text-white stroke-[1.6]" />
+                    )}
                   </div>
                 </div>
 
@@ -119,7 +136,7 @@ export const Services: React.FC = () => {
                     </span>
                   )}
 
-                  {/* Concise, Balanced Service Description directly beneath title */}
+                  {/* Service Description directly beneath title */}
                   <p className="font-sans text-xs text-[#55524D] leading-relaxed">
                     {service.description}
                   </p>
