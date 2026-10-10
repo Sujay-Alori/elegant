@@ -10,7 +10,6 @@ import {
   Calculator,
   Crosshair,
   FileCheck2,
-  ArrowRight,
   type LucideIcon,
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
@@ -29,20 +28,6 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export const Services: React.FC = () => {
-  const handleScrollToContact = (serviceTitle: string) => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        const messageInput = contactSection.querySelector('textarea') as HTMLTextAreaElement | null;
-        if (messageInput) {
-          messageInput.value = `I am interested in consulting regarding: ${serviceTitle}.`;
-          messageInput.focus();
-        }
-      }, 400);
-    }
-  };
-
   return (
     <section
       id="services"
@@ -81,8 +66,8 @@ export const Services: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Compact 3-Column Grid on Desktop, 2 on Tablets, 1 on Mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-6 w-full">
+        {/* 3-Column Grid on Desktop, 2 on Tablets, 1 on Mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 w-full">
           {servicesData.map((service, index) => {
             const IconComponent = iconMap[service.iconName] || Compass;
 
@@ -97,61 +82,47 @@ export const Services: React.FC = () => {
                   delay: index * 0.04,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group relative bg-white rounded-xl border border-[#E8E4DA] shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.07)] hover:border-[#168BCB]/40 transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden hover:-translate-y-1"
+                className="relative bg-white rounded-2xl border border-[#E8E4DA] shadow-[0_4px_18px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_24px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out flex flex-col justify-between overflow-hidden cursor-default"
               >
-                {/* Compact Decorative Top Banner with Angled Geometric Facet */}
+                {/* Decorative Top Section with Centered Prominent Icon (76-84px) */}
                 <div className="relative w-full overflow-hidden bg-[#FAF7F2]">
+                  {/* Decorative cream-colored facet banner */}
                   <div
-                    className="h-14 sm:h-16 w-full bg-gradient-to-b from-[#F3ECE1] to-[#EAE0D1] transition-colors duration-300 group-hover:from-[#EFE6DB] group-hover:to-[#E4D8C8]"
+                    className="h-24 sm:h-26 md:h-28 w-full bg-gradient-to-b from-[#F3ECE1] to-[#EAE0D1]"
                     style={{
-                      clipPath: 'polygon(0 0, 100% 0, 100% 65%, 50% 98%, 0% 65%)',
+                      clipPath: 'polygon(0 0, 100% 0, 100% 68%, 50% 98%, 0% 68%)',
                     }}
                   />
 
-                  {/* Compact Circular Icon centered at the top */}
-                  <div className="absolute top-4 sm:top-5 left-1/2 -translate-x-1/2 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1C1C1B] text-white flex items-center justify-center shadow-sm ring-4 ring-white group-hover:bg-[#168BCB] transition-colors duration-300 z-10">
-                    <IconComponent className="w-5 h-5 sm:w-5 sm:h-5 stroke-[1.75]" />
+                  {/* Enlarge Circular Icon Container: 76-84px on desktop, 30-36px icon */}
+                  <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[76px] h-[76px] sm:w-20 sm:h-20 md:w-[82px] md:h-[82px] rounded-full bg-[#1C1C1B] text-white flex items-center justify-center shadow-md ring-4 ring-white z-10">
+                    <IconComponent className="w-8 h-8 sm:w-8 sm:h-8 md:w-9 md:h-9 stroke-[1.6]" />
                   </div>
                 </div>
 
-                {/* Compact Card Content Body */}
-                <div className="pt-5 sm:pt-6 pb-5 px-5 sm:px-6 flex flex-col items-center text-center flex-1 justify-between">
-                  <div className="w-full">
-                    {/* Service Number Index */}
-                    <span className="font-mono text-[10px] sm:text-[11px] text-[#77736B] tracking-[0.2em] uppercase block mb-1 font-medium">
-                      {service.number}
+                {/* Card Content Body */}
+                <div className="pt-6 sm:pt-7 pb-6 sm:pb-7 px-5 sm:px-6 flex flex-col items-center text-center flex-1 justify-start">
+                  {/* Service Number Index */}
+                  <span className="font-mono text-[10px] sm:text-[11px] text-[#77736B] tracking-[0.2em] uppercase block mb-1 font-medium">
+                    {service.number}
+                  </span>
+
+                  {/* Service Title with Serif Typography */}
+                  <h3 className="font-serif text-base sm:text-[17px] font-bold text-[#1C1C1B] tracking-tight uppercase mb-2.5 min-h-[2.4rem] flex items-center justify-center leading-snug">
+                    {service.title}
+                  </h3>
+
+                  {/* Optional Subheading (for VASTU SERVICES on Landscape Design) */}
+                  {service.subheading && (
+                    <span className="block font-mono text-[10px] sm:text-[11px] font-bold text-[#168BCB] tracking-[0.2em] uppercase mb-1.5">
+                      {service.subheading}
                     </span>
+                  )}
 
-                    {/* Service Title */}
-                    <h3 className="font-serif text-base sm:text-[17px] font-bold text-[#1C1C1B] tracking-tight uppercase mb-2.5 min-h-[2.5rem] flex items-center justify-center leading-snug">
-                      {service.title}
-                    </h3>
-
-                    {/* Optional Subheading (for VASTU SERVICES on Landscape Design) */}
-                    {service.subheading && (
-                      <span className="block font-mono text-[10px] sm:text-[11px] font-bold text-[#168BCB] tracking-[0.2em] uppercase mb-2">
-                        {service.subheading}
-                      </span>
-                    )}
-
-                    {/* Exact Service Description directly beneath title */}
-                    <p className="font-sans text-xs text-[#55524D] leading-relaxed mb-4">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Direct "Read More" Contact / Inquiry Link */}
-                  <div className="w-full pt-3 border-t border-[#F2EFE8] flex justify-center mt-auto">
-                    <button
-                      type="button"
-                      onClick={() => handleScrollToContact(service.title)}
-                      className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-wider text-[#1C1C1B] group-hover:text-[#168BCB] transition-colors duration-200 cursor-pointer"
-                    >
-                      <span className="w-1.5 h-1.5 bg-[#168BCB] rounded-[1px] shrink-0" />
-                      <span>Read More</span>
-                      <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
-                    </button>
-                  </div>
+                  {/* Concise, Balanced Service Description directly beneath title */}
+                  <p className="font-sans text-xs text-[#55524D] leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
               </motion.div>
             );
