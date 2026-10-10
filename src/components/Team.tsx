@@ -10,6 +10,7 @@ interface TeamMember {
   image: string;
   imageOnLeft: boolean;
   bgVariant: 'light' | 'cream';
+  objectPosition?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -18,60 +19,60 @@ const teamMembers: TeamMember[] = [
     name: 'Ashok Kumar Sethi',
     role: 'Principal Architect, Founder',
     initials: 'AS',
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80',
+    image: '/ashok.jpeg',
     imageOnLeft: true,
     bgVariant: 'light',
+    objectPosition: 'center 15%',
   },
   {
     id: 'santosh-sahu',
     name: 'Santosh Sahu',
     role: 'Site Engineer',
     initials: 'SS',
-    image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80',
+    image: '/santosh.jpeg',
     imageOnLeft: false,
     bgVariant: 'cream',
+    objectPosition: 'center 20%',
   },
   {
     id: 'rajashree-sahoo',
     name: 'Rajashree Sahoo',
     role: 'Structural Engineer',
     initials: 'RS',
-    image:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+    image: '/rajshree.jpeg',
     imageOnLeft: true,
     bgVariant: 'cream',
+    objectPosition: 'center 20%',
   },
   {
     id: 'mukta-rath',
     name: 'Mukta Rath',
     role: 'Assistant Architect',
     initials: 'MR',
-    image:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+    image: '/mukta.jpeg',
     imageOnLeft: false,
     bgVariant: 'light',
+    objectPosition: 'center 15%',
   },
   {
     id: 'avijit-mohanty',
     name: 'Avijit Mohanty',
     role: 'Junior Architect',
     initials: 'AM',
-    image:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+    image: '/avijit.jpeg',
     imageOnLeft: true,
     bgVariant: 'light',
+    objectPosition: 'center 15%',
   },
   {
     id: 'rabin-bisoi',
     name: 'Rabin Bisoi',
     role: 'Site Architect/Engineer',
     initials: 'RB',
-    image:
-      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
+    image: '/rabin.jpeg',
     imageOnLeft: false,
     bgVariant: 'cream',
+    objectPosition: 'center 20%',
   },
 ];
 
@@ -152,15 +153,16 @@ export const Team: React.FC = () => {
                     isLeft ? 'sm:flex-row' : 'sm:flex-row-reverse text-left sm:text-right'
                   }`}
                 >
-                  {/* Overlapping Photo Capsule / Circle */}
+                  {/* Overlapping Photo Frame */}
                   <div className="relative shrink-0">
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-white shadow-md bg-[#1C1C1B] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-white shadow-md bg-[#1C1C1B] flex items-center justify-center transition-transform duration-300 group-hover:scale-104">
                       {!hasError ? (
                         <img
                           src={member.image}
-                          alt={`Placeholder portrait for ${member.name} — ${member.role}`}
+                          alt={`${member.name} — ${member.role}`}
                           onError={() => handleImgError(member.id)}
-                          className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+                          style={{ objectPosition: member.objectPosition || 'center 20%' }}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
                       ) : (
@@ -170,13 +172,13 @@ export const Team: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Subtle role badge dot */}
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#168BCB] text-white flex items-center justify-center shadow-xs text-[10px]">
+                    {/* Verified Role Badge Dot */}
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#168BCB] text-white flex items-center justify-center shadow-xs text-[10px] ring-2 ring-white">
                       <UserCheck className="w-3.5 h-3.5" />
                     </div>
                   </div>
 
-                  {/* Name, Role & Details */}
+                  {/* Name, Role & Architectural Details */}
                   <div className="flex-1 min-w-0 flex flex-col justify-center">
                     <div
                       className={`flex items-center gap-2 mb-1.5 ${
